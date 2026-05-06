@@ -94,30 +94,17 @@
   }
   .nav .container{display:flex;align-items:center;justify-content:space-between}
   .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+  
+  /* Logo completamente limpio y sin fondo */
   .brand img{
-    height:90px; 
-    width:auto;display:block;
-    background:#ffffff;
-    padding:8px 16px;
-    border-radius:14px;
-    border:1px solid rgba(14,165,233,.25);
-    filter:
-      drop-shadow(0 0 3px rgba(14,165,233,.4))
-      drop-shadow(0 0 10px rgba(14,165,233,.25))
-      drop-shadow(0 0 18px rgba(43,108,243,.22));
-    animation:logoNeon 3.6s ease-in-out infinite alternate;
-    transition:filter .3s,height .3s,padding .3s;
+    height:70px; 
+    width:auto;
+    display:block;
+    transition:height .3s ease, transform .3s ease;
   }
-  .nav.scrolled .brand img{height:75px;padding:6px 14px}
+  .nav.scrolled .brand img{height:55px}
   .brand:hover img{
-    filter:
-      drop-shadow(0 0 5px rgba(14,165,233,.6))
-      drop-shadow(0 0 14px rgba(14,165,233,.4))
-      drop-shadow(0 0 24px rgba(43,108,243,.4));
-  }
-  @keyframes logoNeon{
-    from{filter:drop-shadow(0 0 3px rgba(14,165,233,.35)) drop-shadow(0 0 8px rgba(14,165,233,.22)) drop-shadow(0 0 16px rgba(43,108,243,.2));}
-    to{filter:drop-shadow(0 0 5px rgba(14,165,233,.55)) drop-shadow(0 0 13px rgba(14,165,233,.38)) drop-shadow(0 0 22px rgba(43,108,243,.35));}
+    transform:scale(1.05);
   }
 
   .nav-controls {
@@ -167,28 +154,15 @@
   .burger{display:none;background:none;border:0;color:var(--text);cursor:pointer;padding:8px}
   .burger svg{width:28px;height:28px}
 
+  /* MEDIA QUERY - AJUSTES PARA MÓVIL */
   @media (max-width:860px){
-    /* 1. Reducimos el logo para celulares */
-    .brand img {
-      height: 50px; 
-      padding: 6px 12px;
-    }
-    .nav.scrolled .brand img {
-      height: 42px;
-    }
-    
-    /* 2. Acercamos el menú y el botón de idioma */
-    .nav-controls {
-      gap: 12px;
-    }
-    .lang-btn {
-      padding: 5px 10px;
-      font-size: 0.8rem;
-    }
+    /* Ajustes del logo en celular para no tapar los botones */
+    .brand img { height: 45px; }
+    .nav.scrolled .brand img { height: 40px; }
+    .nav-controls { gap: 12px; }
 
-    /* 3. Ajustamos el menú desplegable */
     .nav-links{
-      position:fixed;top:70px;left:0;right:0;
+      position:fixed;top:64px;left:0;right:0;
       flex-direction:column;gap:0;padding:20px 0;
       background:rgba(255,255,255,.98);backdrop-filter:blur(18px);
       border-bottom:1px solid var(--line);
@@ -198,7 +172,7 @@
     .nav-links a{padding:14px 24px;width:100%;text-align:center}
     .nav-links a::after{display:none}
     .nav-cta{margin:8px auto 0;display:inline-block;width:auto}
-    .burger{display:block; padding:4px}
+    .burger{display:block; padding:4px;}
   }
 
   /* ========= HERO ========= */
@@ -342,7 +316,10 @@
   footer{border-top:1px solid var(--line);padding:60px 0 30px;background:rgba(248, 250, 252, 0.9);}
   .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:50px;margin-bottom:40px}
   .foot-brand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+  
+  /* Logo del footer también limpio */
   .foot-brand img{height:46px}
+  
   .foot-brand b{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
   .foot-col p{color:var(--muted);font-size:.92rem;max-width:340px}
   .foot-col h5{font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text);margin-bottom:18px;font-family:'Space Grotesk'}
@@ -371,7 +348,6 @@
 </head>
 <body>
 
-<!-- ========= NAV ========= -->
 <header class="nav" id="nav">
   <div class="container">
     <a href="#top" class="brand" aria-label="DIRO TECH">
@@ -392,7 +368,6 @@
   </div>
 </header>
 
-<!-- ========= HERO ========= -->
 <section class="hero" id="top">
   <div class="hero-glow"></div>
   <div class="container">
@@ -441,7 +416,6 @@
   </div>
 </section>
 
-<!-- ========= ABOUT ========= -->
 <section class="about" id="nosotros">
   <div class="container">
     <div class="about-grid">
@@ -489,7 +463,6 @@
   </div>
 </section>
 
-<!-- ========= SERVICIOS ========= -->
 <section class="services" id="servicios">
   <div class="container">
     <div class="section-head reveal">
@@ -542,7 +515,6 @@
   </div>
 </section>
 
-<!-- ========= PROCESO ========= -->
 <section class="process" id="proceso">
   <div class="container">
     <div class="section-head reveal">
@@ -560,7 +532,6 @@
   </div>
 </section>
 
-<!-- ========= CTA BANNER ========= -->
 <section style="padding:40px 0 80px">
   <div class="container">
     <div class="cta-banner reveal-scale">
@@ -574,7 +545,6 @@
   </div>
 </section>
 
-<!-- ========= CONTACTO ========= -->
 <section id="contacto">
   <div class="container">
     <div class="section-head reveal">
@@ -650,7 +620,6 @@
   </div>
 </section>
 
-<!-- ========= FOOTER ========= -->
 <footer>
   <div class="container">
     <div class="foot-grid">
@@ -712,11 +681,10 @@
   });
 
   // ====== PRECIOS DINÁMICOS POR PAÍS ======
-  // Matriz de precios definidos por el usuario
   const pricingMatrix = {
     nativas: { usd: "$3,999 USD", mxn: "$79,900 MXN", eur: "3.999 €" },
     multi: { usd: "$2,499 USD", mxn: "$49,900 MXN", eur: "2.499 €" },
-    uxui: { usd: "$1,299 USD", mxn: "$18,900 MXN", eur: "1.299 €" },
+    uxui: { usd: "$1,299 USD", mxn: "$25,900 MXN", eur: "1.299 €" },
     consultoria: { usd: "$99 USD", mxn: "$1,900 MXN", eur: "99 €" }
   };
 
@@ -729,8 +697,6 @@
     });
   }
 
-  // Detección de país súper segura (detectando la zona horaria de la computadora del usuario).
-  // Esto nunca falla al probar en local y no es bloqueado por extensiones de privacidad.
   function detectCurrency() {
     try {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
@@ -738,7 +704,7 @@
       if (tz.includes('Europe') || tz.includes('Madrid') || tz.includes('Paris') || tz.includes('Berlin')) return 'eur';
       return 'usd';
     } catch (error) {
-      return 'usd'; // Fallback por defecto si hay un error muy inusual
+      return 'usd'; 
     }
   }
 
