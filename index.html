@@ -168,18 +168,37 @@
   .burger svg{width:28px;height:28px}
 
   @media (max-width:860px){
+    /* 1. Reducimos el logo para celulares */
+    .brand img {
+      height: 50px; 
+      padding: 6px 12px;
+    }
+    .nav.scrolled .brand img {
+      height: 42px;
+    }
+    
+    /* 2. Acercamos el menú y el botón de idioma */
+    .nav-controls {
+      gap: 12px;
+    }
+    .lang-btn {
+      padding: 5px 10px;
+      font-size: 0.8rem;
+    }
+
+    /* 3. Ajustamos el menú desplegable */
     .nav-links{
-      position:fixed;top:64px;left:0;right:0;
+      position:fixed;top:70px;left:0;right:0;
       flex-direction:column;gap:0;padding:20px 0;
-      background:rgba(255,255,255,.95);backdrop-filter:blur(18px);
+      background:rgba(255,255,255,.98);backdrop-filter:blur(18px);
       border-bottom:1px solid var(--line);
-      transform:translateY(-110%);transition:transform .3s;
+      transform:translateY(-120%);transition:transform .3s;
     }
     .nav-links.open{transform:translateY(0)}
     .nav-links a{padding:14px 24px;width:100%;text-align:center}
     .nav-links a::after{display:none}
     .nav-cta{margin:8px auto 0;display:inline-block;width:auto}
-    .burger{display:block}
+    .burger{display:block; padding:4px}
   }
 
   /* ========= HERO ========= */
