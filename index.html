@@ -2,7 +2,7 @@
 <html lang="es" id="htmlTag">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title data-es="DIRO TECH — Construimos el software que tu idea merece" data-en="DIRO TECH — We build the software your idea deserves">DIRO TECH — Construimos el software que tu idea merece</title>
 <meta name="description" content="DIRO TECH — Desarrollo web y apps, ciberseguridad, automatización y soporte técnico. Ciudad de México y atención online." />
 <link rel="icon" href="assets/logo.png" />
@@ -33,18 +33,12 @@
 
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  
-  /* Bloqueo estricto de desbordamiento horizontal */
-  html, body{
-    width: 100%;
-    overflow-x: hidden;
-  }
-
   body{
     font-family:'Inter',system-ui,sans-serif;
     background:var(--bg);
     color:var(--text);
     line-height:1.6;
+    overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
   }
 
@@ -100,16 +94,30 @@
   }
   .nav .container{display:flex;align-items:center;justify-content:space-between}
   .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
-  
   .brand img{
-    height:70px; 
-    width:auto;
-    display:block;
-    transition:height .3s ease, transform .3s ease;
+    height:90px; 
+    width:auto;display:block;
+    background:#ffffff;
+    padding:8px 16px;
+    border-radius:14px;
+    border:1px solid rgba(14,165,233,.25);
+    filter:
+      drop-shadow(0 0 3px rgba(14,165,233,.4))
+      drop-shadow(0 0 10px rgba(14,165,233,.25))
+      drop-shadow(0 0 18px rgba(43,108,243,.22));
+    animation:logoNeon 3.6s ease-in-out infinite alternate;
+    transition:filter .3s,height .3s,padding .3s;
   }
-  .nav.scrolled .brand img{height:55px}
+  .nav.scrolled .brand img{height:75px;padding:6px 14px}
   .brand:hover img{
-    transform:scale(1.05);
+    filter:
+      drop-shadow(0 0 5px rgba(14,165,233,.6))
+      drop-shadow(0 0 14px rgba(14,165,233,.4))
+      drop-shadow(0 0 24px rgba(43,108,243,.4));
+  }
+  @keyframes logoNeon{
+    from{filter:drop-shadow(0 0 3px rgba(14,165,233,.35)) drop-shadow(0 0 8px rgba(14,165,233,.22)) drop-shadow(0 0 16px rgba(43,108,243,.2));}
+    to{filter:drop-shadow(0 0 5px rgba(14,165,233,.55)) drop-shadow(0 0 13px rgba(14,165,233,.38)) drop-shadow(0 0 22px rgba(43,108,243,.35));}
   }
 
   .nav-controls {
@@ -159,18 +167,28 @@
   .burger{display:none;background:none;border:0;color:var(--text);cursor:pointer;padding:8px}
   .burger svg{width:28px;height:28px}
 
-  /* MEDIA QUERY - AJUSTES MAESTROS PARA MÓVIL */
   @media (max-width:860px){
-    /* 1. Prevenir padding horizontal que rompe el layout */
-    .container { padding: 0 16px; }
-    section { padding: 80px 0; }
+    /* 1. Reducimos el logo para celulares */
+    .brand img {
+      height: 50px; 
+      padding: 6px 12px;
+    }
+    .nav.scrolled .brand img {
+      height: 42px;
+    }
     
-    .brand img { height: 45px; }
-    .nav.scrolled .brand img { height: 40px; }
-    .nav-controls { gap: 12px; }
+    /* 2. Acercamos el menú y el botón de idioma */
+    .nav-controls {
+      gap: 12px;
+    }
+    .lang-btn {
+      padding: 5px 10px;
+      font-size: 0.8rem;
+    }
 
+    /* 3. Ajustamos el menú desplegable */
     .nav-links{
-      position:fixed;top:64px;left:0;right:0;
+      position:fixed;top:70px;left:0;right:0;
       flex-direction:column;gap:0;padding:20px 0;
       background:rgba(255,255,255,.98);backdrop-filter:blur(18px);
       border-bottom:1px solid var(--line);
@@ -180,41 +198,7 @@
     .nav-links a{padding:14px 24px;width:100%;text-align:center}
     .nav-links a::after{display:none}
     .nav-cta{margin:8px auto 0;display:inline-block;width:auto}
-    .burger{display:block; padding:4px;}
-
-    /* 2. Reparación del Banner Azul y Botones */
-    .cta-banner {
-      padding: 40px 24px; /* Eliminamos el exceso de relleno (antes 64px 48px) */
-      border-radius: 20px;
-    }
-    .cta-banner h2 { font-size: 1.8rem; }
-    
-    .btn {
-      padding: 12px 20px;
-      font-size: 0.92rem;
-      white-space: normal; /* Permite que el texto se acomode sin estirar la caja */
-      text-align: center;
-      justify-content: center;
-    }
-    .btn svg { flex-shrink: 0; }
-
-    /* 3. Reparación de tarjetas y formularios */
-    .contact-info, .contact-form, .service {
-      padding: 24px 20px; /* Evitamos desbordamientos en móviles */
-    }
-    .hero h1 { font-size: 2.2rem; }
-    .hero-grid { grid-template-columns: 1fr; gap: 50px; }
-    .hero-visual { display: none; }
-    .about-grid { grid-template-columns: 1fr; gap: 50px; }
-    .pillars { grid-template-columns: 1fr; }
-    .services-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-  }
-
-  /* Ajuste especial para pantallas muy pequeñas (Ej: iPhone SE) */
-  @media (max-width: 480px){
-    .steps { grid-template-columns: 1fr; gap: 40px; } /* 1 paso a la vez en vertical */
+    .burger{display:block; padding:4px}
   }
 
   /* ========= HERO ========= */
@@ -258,6 +242,11 @@
   .fc-2{bottom:-20px;right:-20px;animation-delay:1.5s}
   @keyframes floatY{from{transform:translateY(0)}to{transform:translateY(-12px)}}
 
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:50px}
+    .hero-visual{display:none}
+  }
+
   /* ========= SECTION COMMON ========= */
   section{padding:120px 0;position:relative}
   .section-head{text-align:center;max-width:720px;margin:0 auto 70px}
@@ -281,6 +270,11 @@
   .about-visual{position:relative;aspect-ratio:1/1;border-radius:24px;background:linear-gradient(135deg,#ffffff 0%,#f1f5f9 60%,#e2e8f0 100%);border:1px solid var(--line);overflow:hidden;display:grid;place-items:center;box-shadow:0 30px 80px -30px rgba(0,0,0,.1);}
   .about-visual img{position:relative;z-index:2;width:62%;max-width:340px;}
 
+  @media (max-width:860px){
+    .about-grid{grid-template-columns:1fr;gap:50px}
+    .pillars{grid-template-columns:1fr}
+  }
+
   /* ========= SERVICIOS ========= */
   .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
   .service{position:relative;padding:36px 32px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,1),rgba(248,250,252,1));border:1px solid var(--line);overflow:hidden;transition:transform .35s,border-color .35s;box-shadow: 0 4px 20px rgba(0,0,0,0.03);}
@@ -295,6 +289,11 @@
   .price .from{font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
   .price .num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.6rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
   .price .unit{font-size:.85rem;color:var(--muted)}
+
+  @media (max-width:760px){
+    .services-grid{grid-template-columns:1fr}
+    .service p{min-height:auto}
+  }
 
   /* ========= PROCESS ========= */
   .process{position:relative;background:linear-gradient(180deg,transparent,rgba(255,255,255,.6),transparent)}
@@ -337,6 +336,8 @@
   .field textarea{resize:vertical;min-height:120px}
   .contact-form .btn{margin-top:8px;width:100%;justify-content:center}
 
+  @media (max-width:860px){.contact-grid{grid-template-columns:1fr};.form-row{grid-template-columns:1fr}}
+
   /* ========= FOOTER ========= */
   footer{border-top:1px solid var(--line);padding:60px 0 30px;background:rgba(248, 250, 252, 0.9);}
   .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:50px;margin-bottom:40px}
@@ -350,6 +351,7 @@
   .foot-col a{color:var(--muted);text-decoration:none;font-size:.92rem;transition:color .25s}
   .foot-col a:hover{color:var(--primary)}
   .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:.85rem;}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr;gap:30px}}
 
   /* ========= REVEAL ANIMATIONS ========= */
   .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
@@ -369,6 +371,7 @@
 </head>
 <body>
 
+<!-- ========= NAV ========= -->
 <header class="nav" id="nav">
   <div class="container">
     <a href="#top" class="brand" aria-label="DIRO TECH">
@@ -389,6 +392,7 @@
   </div>
 </header>
 
+<!-- ========= HERO ========= -->
 <section class="hero" id="top">
   <div class="hero-glow"></div>
   <div class="container">
@@ -437,6 +441,7 @@
   </div>
 </section>
 
+<!-- ========= ABOUT ========= -->
 <section class="about" id="nosotros">
   <div class="container">
     <div class="about-grid">
@@ -484,6 +489,7 @@
   </div>
 </section>
 
+<!-- ========= SERVICIOS ========= -->
 <section class="services" id="servicios">
   <div class="container">
     <div class="section-head reveal">
@@ -536,6 +542,7 @@
   </div>
 </section>
 
+<!-- ========= PROCESO ========= -->
 <section class="process" id="proceso">
   <div class="container">
     <div class="section-head reveal">
@@ -553,6 +560,7 @@
   </div>
 </section>
 
+<!-- ========= CTA BANNER ========= -->
 <section style="padding:40px 0 80px">
   <div class="container">
     <div class="cta-banner reveal-scale">
@@ -566,6 +574,7 @@
   </div>
 </section>
 
+<!-- ========= CONTACTO ========= -->
 <section id="contacto">
   <div class="container">
     <div class="section-head reveal">
@@ -641,6 +650,7 @@
   </div>
 </section>
 
+<!-- ========= FOOTER ========= -->
 <footer>
   <div class="container">
     <div class="foot-grid">
@@ -671,7 +681,7 @@
     </div>
     <div class="foot-bottom">
       <span class="i18n" data-es='© <span id="year"></span> DIRO TECH · Todos los derechos reservados.' data-en='© <span id="year"></span> DIRO TECH · All rights reserved.'>© <span id="year"></span> DIRO TECH · Todos los derechos reservados.</span>
-      <span class="mono" style="color:var(--accent)" class="i18n" data-es="› construyendo el futuro" data-en="› building the future">› construyendo el futuro</span>
+      <span class="mono i18n" style="color:var(--accent)" data-es="› construyendo el futuro" data-en="› building the future">› construyendo el futuro</span>
     </div>
   </div>
 </footer>
@@ -702,10 +712,11 @@
   });
 
   // ====== PRECIOS DINÁMICOS POR PAÍS ======
+  // Matriz de precios definidos por el usuario
   const pricingMatrix = {
     nativas: { usd: "$3,999 USD", mxn: "$79,900 MXN", eur: "3.999 €" },
     multi: { usd: "$2,499 USD", mxn: "$49,900 MXN", eur: "2.499 €" },
-    uxui: { usd: "$1,299 USD", mxn: "$25,900 MXN", eur: "1.299 €" },
+    uxui: { usd: "$1,299 USD", mxn: "$18,900 MXN", eur: "1.299 €" },
     consultoria: { usd: "$99 USD", mxn: "$1,900 MXN", eur: "99 €" }
   };
 
@@ -718,6 +729,8 @@
     });
   }
 
+  // Detección de país súper segura (detectando la zona horaria de la computadora del usuario).
+  // Esto nunca falla al probar en local y no es bloqueado por extensiones de privacidad.
   function detectCurrency() {
     try {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
@@ -725,7 +738,7 @@
       if (tz.includes('Europe') || tz.includes('Madrid') || tz.includes('Paris') || tz.includes('Berlin')) return 'eur';
       return 'usd';
     } catch (error) {
-      return 'usd'; 
+      return 'usd'; // Fallback por defecto si hay un error muy inusual
     }
   }
 
