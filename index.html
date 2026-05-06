@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es" id="htmlTag">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-es="DIRO TECH — Construimos el software que tu idea merece" data-en="DIRO TECH — We build the software your idea deserves">DIRO TECH — Construimos el software que tu idea merece</title>
+<meta name="description" content="DIRO TECH — Desarrollo web y apps, ciberseguridad, automatización y soporte técnico. Ciudad de México y atención online." />
+<link rel="icon" href="assets/logo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* Tema Claro */
+    --bg:#f8fafc;
+    --bg-2:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f1f5f9;
+    --line:rgba(30,79,214,.15);
+    --text:#0f172a;
+    --muted:#64748b;
+    --primary:#1e4fd6;       
+    --primary-2:#2b6cf3;
+    --accent:#0ea5e9;         
+    --accent-2:#14b8a6;
+    --grad:linear-gradient(135deg,#1e4fd6 0%,#2b6cf3 45%,#0ea5e9 100%);
+    --grad-soft:linear-gradient(135deg,rgba(30,79,214,.1),rgba(14,165,233,.1));
+    --shadow:0 20px 60px -20px rgba(43,108,243,.25);
+    --radius:18px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#f8fafc}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#1e4fd6,#0ea5e9);border-radius:10px}
+  ::selection{background:rgba(14,165,233,.35);color:#fff}
+
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:
+      linear-gradient(rgba(30,79,214,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(30,79,214,.05) 1px,transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%);
+    -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%);
+    z-index:-2;
+    pointer-events:none;
+  }
+  body::after{
+    content:"";
+    position:fixed;
+    top:-20%;left:-10%;
+    width:60vw;height:60vw;
+    background:radial-gradient(circle,rgba(43,108,243,.05),transparent 60%);
+    filter:blur(40px);
+    z-index:-2;pointer-events:none;
+    animation:float 18s ease-in-out infinite alternate;
+  }
+  @keyframes float{
+    from{transform:translate(0,0)}
+    to{transform:translate(15vw,10vh)}
+  }
+
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+  .mono{font-family:'JetBrains Mono',monospace}
+
+  /* ========= NAV ========= */
+  .nav{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    padding:18px 0;
+    transition:all .3s ease;
+  }
+  .nav.scrolled{
+    background:rgba(248, 250, 252, 0.85);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);
+    padding:12px 0;
+  }
+  .nav .container{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+  .brand img{
+    height:90px; 
+    width:auto;display:block;
+    background:#ffffff;
+    padding:8px 16px;
+    border-radius:14px;
+    border:1px solid rgba(14,165,233,.25);
+    filter:
+      drop-shadow(0 0 3px rgba(14,165,233,.4))
+      drop-shadow(0 0 10px rgba(14,165,233,.25))
+      drop-shadow(0 0 18px rgba(43,108,243,.22));
+    animation:logoNeon 3.6s ease-in-out infinite alternate;
+    transition:filter .3s,height .3s,padding .3s;
+  }
+  .nav.scrolled .brand img{height:75px;padding:6px 14px}
+  .brand:hover img{
+    filter:
+      drop-shadow(0 0 5px rgba(14,165,233,.6))
+      drop-shadow(0 0 14px rgba(14,165,233,.4))
+      drop-shadow(0 0 24px rgba(43,108,243,.4));
+  }
+  @keyframes logoNeon{
+    from{filter:drop-shadow(0 0 3px rgba(14,165,233,.35)) drop-shadow(0 0 8px rgba(14,165,233,.22)) drop-shadow(0 0 16px rgba(43,108,243,.2));}
+    to{filter:drop-shadow(0 0 5px rgba(14,165,233,.55)) drop-shadow(0 0 13px rgba(14,165,233,.38)) drop-shadow(0 0 22px rgba(43,108,243,.35));}
+  }
+
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{
+    color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;
+    transition:color .25s;position:relative;
+  }
+  .nav-links a:hover{color:var(--text)}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:-6px;
+    width:0;height:2px;background:var(--grad);
+    transition:width .3s;
+  }
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{
+    background:var(--grad);color:#fff !important;
+    padding:10px 20px;border-radius:999px;font-weight:600;
+    box-shadow:0 6px 20px -6px rgba(43,108,243,.4);
+  }
+  .nav-cta::after{display:none}
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px -6px rgba(43,108,243,.6)}
+
+  /* Botón de Idioma */
+  .lang-btn {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .lang-btn:hover {
+    border-color: var(--accent);
+    color: var(--primary);
+  }
+
+  .burger{display:none;background:none;border:0;color:var(--text);cursor:pointer;padding:8px}
+  .burger svg{width:28px;height:28px}
+
+  @media (max-width:860px){
+    .nav-links{
+      position:fixed;top:64px;left:0;right:0;
+      flex-direction:column;gap:0;padding:20px 0;
+      background:rgba(255,255,255,.95);backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+      transform:translateY(-110%);transition:transform .3s;
+    }
+    .nav-links.open{transform:translateY(0)}
+    .nav-links a{padding:14px 24px;width:100%;text-align:center}
+    .nav-links a::after{display:none}
+    .nav-cta{margin:8px auto 0;display:inline-block;width:auto}
+    .burger{display:block}
+  }
+
+  /* ========= HERO ========= */
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:140px 0 80px;overflow:hidden;}
+  .hero-glow{position:absolute;width:800px;height:800px;right:-200px;top:-200px;background:radial-gradient(circle,rgba(14,165,233,.08),transparent 60%);filter:blur(60px);pointer-events:none;z-index:0;}
+  .hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:var(--grad-soft);border:1px solid var(--line);font-size:.82rem;font-weight:500;color:var(--accent);margin-bottom:24px;}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+  .hero h1{font-size:clamp(2.4rem,5.5vw,4.4rem);margin-bottom:20px;}
+  .hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{font-size:clamp(1.05rem,1.4vw,1.2rem);color:var(--muted);max-width:560px;margin-bottom:36px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;text-decoration:none;font-size:.98rem;border:1px solid transparent;transition:transform .25s,box-shadow .25s,background .25s;cursor:pointer;}
+  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 30px -10px rgba(43,108,243,.4)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px rgba(43,108,243,.6)}
+  .btn-ghost{background:transparent;color:var(--text);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .btn svg{width:18px;height:18px}
+
+  .hero-visual{position:relative;perspective:1200px;}
+  .terminal{background:rgba(255, 255, 255, 0.85);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transform:rotateY(-8deg) rotateX(4deg);transition:transform .6s ease;}
+  .terminal:hover{transform:rotateY(0) rotateX(0)}
+  .term-bar{display:flex;gap:6px;padding:14px 16px;border-bottom:1px solid var(--line);background:rgba(241, 245, 249, 0.8);}
+  .term-bar span{width:12px;height:12px;border-radius:50%;background:#cbd5e1}
+  .term-bar span:nth-child(1){background:#ff5f57}
+  .term-bar span:nth-child(2){background:#febc2e}
+  .term-bar span:nth-child(3){background:#28c840}
+  .term-body{padding:24px;font-family:'JetBrains Mono',monospace;font-size:.88rem;line-height:1.9}
+  .term-body .l1{color:var(--muted)}
+  .term-body .l2{color:var(--primary)}
+  .term-body .l3{color:#334155}
+  .term-body .l4{color:var(--accent-2)}
+  .term-body .cursor{display:inline-block;width:8px;height:1em;background:var(--accent);vertical-align:-2px;animation:blink 1s steps(2) infinite;margin-left:4px}
+  @keyframes blink{50%{opacity:0}}
+
+  .floating-card{position:absolute;background:rgba(255, 255, 255, 0.95);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;font-size:.85rem;font-weight:500;box-shadow:0 12px 30px -10px rgba(0,0,0,.1);animation:floatY 4s ease-in-out infinite alternate;}
+  .floating-card .ic{width:36px;height:36px;border-radius:10px;background:var(--grad);display:grid;place-items:center;color:#fff;}
+  .fc-1{top:-20px;left:-30px}
+  .fc-2{bottom:-20px;right:-20px;animation-delay:1.5s}
+  @keyframes floatY{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:50px}
+    .hero-visual{display:none}
+  }
+
+  /* ========= SECTION COMMON ========= */
+  section{padding:120px 0;position:relative}
+  .section-head{text-align:center;max-width:720px;margin:0 auto 70px}
+  .eyebrow{display:inline-block;font-family:'JetBrains Mono',monospace;color:var(--primary);font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;}
+  .section-head h2{font-size:clamp(2rem,3.5vw,3rem);margin-bottom:18px}
+  .section-head h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .section-head p{color:var(--muted);font-size:1.05rem}
+
+  /* ========= ABOUT ========= */
+  .about{position:relative}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .about-text h2{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:24px}
+  .about-text p{color:var(--muted);margin-bottom:18px;font-size:1.02rem}
+  .pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:30px}
+  .pillar{padding:20px;border:1px solid var(--line);border-radius:14px;background:rgba(255, 255, 255, 0.8);transition:transform .3s,border-color .3s,background .3s;box-shadow: 0 4px 20px rgba(0,0,0,0.03);}
+  .pillar:hover{transform:translateY(-4px);border-color:var(--accent);background:#fff;}
+  .pillar .ic{width:42px;height:42px;border-radius:12px;background:var(--grad-soft);display:grid;place-items:center;color:var(--primary);margin-bottom:12px;}
+  .pillar h4{font-size:1rem;margin-bottom:6px}
+  .pillar p{font-size:.9rem;color:var(--muted);margin:0}
+
+  .about-visual{position:relative;aspect-ratio:1/1;border-radius:24px;background:linear-gradient(135deg,#ffffff 0%,#f1f5f9 60%,#e2e8f0 100%);border:1px solid var(--line);overflow:hidden;display:grid;place-items:center;box-shadow:0 30px 80px -30px rgba(0,0,0,.1);}
+  .about-visual img{position:relative;z-index:2;width:62%;max-width:340px;}
+
+  @media (max-width:860px){
+    .about-grid{grid-template-columns:1fr;gap:50px}
+    .pillars{grid-template-columns:1fr}
+  }
+
+  /* ========= SERVICIOS ========= */
+  .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .service{position:relative;padding:36px 32px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,1),rgba(248,250,252,1));border:1px solid var(--line);overflow:hidden;transition:transform .35s,border-color .35s;box-shadow: 0 4px 20px rgba(0,0,0,0.03);}
+  .service::before{content:"";position:absolute;inset:0;background:radial-gradient(600px circle at var(--mx,50%) var(--my,0%),rgba(14,165,233,.08),transparent 40%);opacity:0;transition:opacity .4s;pointer-events:none;}
+  .service:hover{transform:translateY(-6px);border-color:rgba(14,165,233,.4)}
+  .service:hover::before{opacity:1}
+  .service-icon{width:54px;height:54px;border-radius:14px;background:var(--grad);display:grid;place-items:center;color:#fff;margin-bottom:24px;box-shadow:0 10px 24px -8px rgba(43,108,243,.3);}
+  .service-icon svg{width:26px;height:26px}
+  .service h3{font-size:1.3rem;margin-bottom:12px}
+  .service p{color:var(--muted);font-size:.96rem;margin-bottom:24px;min-height:50px}
+  .service .price{display:flex;align-items:baseline;gap:6px;padding-top:20px;border-top:1px dashed var(--line);}
+  .price .from{font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+  .price .num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.6rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .price .unit{font-size:.85rem;color:var(--muted)}
+
+  @media (max-width:760px){
+    .services-grid{grid-template-columns:1fr}
+    .service p{min-height:auto}
+  }
+
+  /* ========= PROCESS ========= */
+  .process{position:relative;background:linear-gradient(180deg,transparent,rgba(255,255,255,.6),transparent)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;}
+  .steps::before{content:"";position:absolute;top:30px;left:8%;right:8%;height:2px;background:linear-gradient(90deg,transparent,var(--accent) 20%,var(--primary) 80%,transparent);opacity:.2;}
+  .step{position:relative;text-align:center;padding:0 8px}
+  .step .num{position:relative;z-index:2;width:60px;height:60px;border-radius:50%;background:#ffffff;border:2px solid var(--accent);display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.3rem;color:var(--primary);margin:0 auto 22px;transition:all .3s;box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
+  .step:hover .num{background:var(--grad);border-color:transparent;color:#fff;transform:scale(1.08)}
+  .step h4{font-size:1.05rem;margin-bottom:8px}
+  .step p{font-size:.9rem;color:var(--muted)}
+  @media (max-width:760px){
+    .steps{grid-template-columns:repeat(2,1fr)}
+    .steps::before{display:none}
+  }
+
+  /* ========= CTA BANNER ========= */
+  .cta-banner{position:relative;background:var(--grad);border-radius:28px;padding:64px 48px;text-align:center;overflow:hidden;box-shadow:0 30px 80px -30px rgba(43,108,243,.4);}
+  .cta-banner::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(255,255,255,.18),transparent 50%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.12),transparent 50%);}
+  .cta-banner h2{position:relative;font-size:clamp(1.8rem,3vw,2.6rem);color:#fff;margin-bottom:14px}
+  .cta-banner p{position:relative;color:rgba(255,255,255,.9);max-width:560px;margin:0 auto 30px}
+  .cta-banner .btn{position:relative;background:#fff;color:var(--primary)}
+  .cta-banner .btn:hover{background:var(--bg);color:var(--text)}
+
+  /* ========= CONTACTO ========= */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:start}
+  .contact-info{padding:36px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,1),rgba(248,250,252,1));border:1px solid var(--line);box-shadow: 0 4px 20px rgba(0,0,0,0.03);}
+  .contact-info h3{font-size:1.3rem;margin-bottom:24px}
+  .info-item{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start}
+  .info-item .ic{width:40px;height:40px;flex-shrink:0;border-radius:10px;background:var(--grad-soft);display:grid;place-items:center;color:var(--primary);}
+  .info-item .lbl{display:block;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px}
+  .info-item a, .info-item span.val{color:var(--text);text-decoration:none;font-weight:500;font-size:.98rem;transition:color .25s}
+  .info-item a:hover{color:var(--primary)}
+
+  .contact-form{padding:36px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,1),rgba(248,250,252,1));border:1px solid var(--line);box-shadow: 0 4px 20px rgba(0,0,0,0.03);}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field label{font-size:.82rem;color:var(--muted);font-weight:500}
+  .field input,.field select,.field textarea{background:rgba(248, 250, 252, 0.8);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--text);font-family:inherit;font-size:.95rem;transition:border-color .25s,background .25s;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,1);}
+  .field textarea{resize:vertical;min-height:120px}
+  .contact-form .btn{margin-top:8px;width:100%;justify-content:center}
+
+  @media (max-width:860px){.contact-grid{grid-template-columns:1fr};.form-row{grid-template-columns:1fr}}
+
+  /* ========= FOOTER ========= */
+  footer{border-top:1px solid var(--line);padding:60px 0 30px;background:rgba(248, 250, 252, 0.9);}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:50px;margin-bottom:40px}
+  .foot-brand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+  .foot-brand img{height:46px}
+  .foot-brand b{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .foot-col p{color:var(--muted);font-size:.92rem;max-width:340px}
+  .foot-col h5{font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text);margin-bottom:18px;font-family:'Space Grotesk'}
+  .foot-col ul{list-style:none}
+  .foot-col li{margin-bottom:10px}
+  .foot-col a{color:var(--muted);text-decoration:none;font-size:.92rem;transition:color .25s}
+  .foot-col a:hover{color:var(--primary)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:.85rem;}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr;gap:30px}}
+
+  /* ========= REVEAL ANIMATIONS ========= */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .reveal.delay-1{transition-delay:.1s}
+  .reveal.delay-2{transition-delay:.2s}
+  .reveal.delay-3{transition-delay:.3s}
+  .reveal.delay-4{transition-delay:.4s}
+  .reveal-scale{opacity:0;transform:scale(.92);transition:opacity .8s ease,transform .8s ease}
+  .reveal-scale.visible{opacity:1;transform:scale(1)}
+
+  @media (prefers-reduced-motion:reduce){
+    .reveal,.reveal-scale{opacity:1 !important;transform:none !important}
+    *{animation:none !important;transition:none !important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ========= NAV ========= -->
+<header class="nav" id="nav">
+  <div class="container">
+    <a href="#top" class="brand" aria-label="DIRO TECH">
+      <img src="assets/logo.png" alt="DIRO TECH" />
+    </a>
+    <div class="nav-controls">
+      <nav class="nav-links" id="navLinks">
+        <a href="#servicios" class="i18n" data-es="Servicios" data-en="Services">Servicios</a>
+        <a href="#nosotros" class="i18n" data-es="Nosotros" data-en="About Us">Nosotros</a>
+        <a href="#proceso" class="i18n" data-es="Proceso" data-en="Process">Proceso</a>
+        <a href="#contacto" class="nav-cta i18n" data-es="Hablemos" data-en="Let's Talk">Hablemos</a>
+      </nav>
+      <button id="langToggle" class="lang-btn">EN</button>
+      <button class="burger" id="burger" aria-label="Menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ========= HERO ========= -->
+<section class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="pill reveal"><span class="dot"></span> <span class="i18n" data-es="Disponible para nuevos proyectos" data-en="Available for new projects">Disponible para nuevos proyectos</span></div>
+        <h1 class="reveal delay-1 i18n" data-es='Construimos el <span class="grad">software</span> que tu idea merece.' data-en='We build the <span class="grad">software</span> your idea deserves.'>
+          Construimos el <span class="grad">software</span> que tu idea merece.
+        </h1>
+        <p class="lead reveal delay-2 i18n" data-es="Desarrollo web y de apps, ciberseguridad, automatización y soporte técnico. Llevamos tu proyecto desde la idea hasta producción con código limpio, interfaces intuitivas y entregas que se sienten profesionales." data-en="Web and app development, cybersecurity, automation, and tech support. We take your project from idea to production with clean code, intuitive interfaces, and professional deliveries.">
+          Desarrollo web y de apps, ciberseguridad, automatización y soporte técnico.
+          Llevamos tu proyecto desde la idea hasta producción con código limpio,
+          interfaces intuitivas y entregas que se sienten profesionales.
+        </p>
+        <div class="cta-row reveal delay-3">
+          <a href="#contacto" class="btn btn-primary i18n" data-es='Solicita una propuesta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>' data-en='Request a proposal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>'>
+            Solicita una propuesta
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#servicios" class="btn btn-ghost i18n" data-es="Ver servicios" data-en="View services">Ver servicios</a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal-scale delay-2">
+        <div class="terminal">
+          <div class="term-bar"><span></span><span></span><span></span></div>
+          <div class="term-body">
+            <div class="l1"># dirotech.apps</div>
+            <div class="l2">$ deploy --target production</div>
+            <div class="l3">› Building app...</div>
+            <div class="l3">› Running security scan ✓</div>
+            <div class="l3">› Optimizing assets ✓</div>
+            <div class="l4 i18n" data-es='✓ Listo. Tu producto en línea.<span class="cursor"></span>' data-en='✓ Done. Your product is live.<span class="cursor"></span>'>✓ Listo. Tu producto en línea.<span class="cursor"></span></div>
+          </div>
+        </div>
+        <div class="floating-card fc-1">
+          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="i18n" data-es='Ciberseguridad<br/><small style="color:var(--muted)">Auditorías reales</small>' data-en='Cybersecurity<br/><small style="color:var(--muted)">Real audits</small>'>Ciberseguridad<br/><small style="color:var(--muted)">Auditorías reales</small></div>
+        </div>
+        <div class="floating-card fc-2">
+          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></div>
+          <div class="i18n" data-es='Automatización<br/><small style="color:var(--muted)">Procesos sin fricción</small>' data-en='Automation<br/><small style="color:var(--muted)">Frictionless processes</small>'>Automatización<br/><small style="color:var(--muted)">Procesos sin fricción</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= ABOUT ========= -->
+<section class="about" id="nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="eyebrow i18n" data-es="Quiénes somos" data-en="Who we are">Quiénes somos</span>
+        <h2 class="i18n" data-es='Tecnología <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">aplicada</span> a tus objetivos.' data-en='Technology <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">applied</span> to your goals.'>Tecnología <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">aplicada</span> a tus objetivos.</h2>
+        <p class="i18n" data-es="En DIRO TECH diseñamos y desarrollamos productos digitales para empresas y emprendedores. Trabajamos sobre cuatro pilares: desarrollo web y de apps, ciberseguridad, automatización de procesos y soporte técnico continuo." data-en="At DIRO TECH we design and develop digital products for companies and entrepreneurs. We work on four pillars: web and app development, cybersecurity, process automation, and continuous tech support.">
+          En DIRO TECH diseñamos y desarrollamos productos digitales para empresas y emprendedores.
+          Trabajamos sobre cuatro pilares: desarrollo web y de apps, ciberseguridad, automatización
+          de procesos y soporte técnico continuo.
+        </p>
+        <p class="i18n" data-es="Nos importa que cada entrega tenga sentido para tu negocio: validación con usuarios, arquitectura sólida y un acompañamiento que no termina cuando se sube a producción." data-en="We care that every delivery makes sense for your business: user validation, solid architecture, and support that doesn't end when it goes into production.">
+          Nos importa que cada entrega tenga sentido para tu negocio: validación con usuarios,
+          arquitectura sólida y un acompañamiento que no termina cuando se sube a producción.
+        </p>
+
+        <div class="pillars">
+          <div class="pillar reveal delay-1">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+            <h4 class="i18n" data-es="Desarrollo" data-en="Development">Desarrollo</h4>
+            <p class="i18n" data-es="Web y apps nativas y multiplataforma." data-en="Web, native and cross-platform apps.">Web y apps nativas y multiplataforma.</p>
+          </div>
+          <div class="pillar reveal delay-2">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h4 class="i18n" data-es="Ciberseguridad" data-en="Cybersecurity">Ciberseguridad</h4>
+            <p class="i18n" data-es="Auditorías, hardening y buenas prácticas." data-en="Audits, hardening, and best practices.">Auditorías, hardening y buenas prácticas.</p>
+          </div>
+          <div class="pillar reveal delay-3">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33"/></svg></div>
+            <h4 class="i18n" data-es="Automatización" data-en="Automation">Automatización</h4>
+            <p class="i18n" data-es="Integraciones que ahorran horas reales." data-en="Integrations that save real hours.">Integraciones que ahorran horas reales.</p>
+          </div>
+          <div class="pillar reveal delay-4">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <h4 class="i18n" data-es="Soporte" data-en="Support">Soporte</h4>
+            <p class="i18n" data-es="Mantenimiento y respuesta cuando hace falta." data-en="Maintenance and response when needed.">Mantenimiento y respuesta cuando hace falta.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual reveal-scale">
+        <img src="assets/logo.png" alt="DIRO TECH logo" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= SERVICIOS ========= -->
+<section class="services" id="servicios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow i18n" data-es="Servicios" data-en="Services">Servicios</span>
+      <h2 class="i18n" data-es='Soluciones <span class="grad">a medida</span> para cada etapa de tu producto.' data-en='Custom <span class="grad">solutions</span> for every stage of your product.'>Soluciones <span class="grad">a medida</span> para cada etapa de tu producto.</h2>
+      <p class="i18n" data-es="Trabajamos con tarifas claras y presupuestos cerrados desde el primer contacto." data-en="We work with clear rates and closed budgets from the first contact.">Trabajamos con tarifas claras y presupuestos cerrados desde el primer contacto.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+        <h3 class="i18n" data-es="Desarrollo de Apps Nativas (iOS / Android)" data-en="Native App Development (iOS / Android)">Desarrollo de Apps Nativas (iOS / Android)</h3>
+        <p class="i18n" data-es="Aplicaciones de alto rendimiento con acceso total al hardware y fluidez nativa." data-en="High-performance applications with full hardware access and native fluidity.">Aplicaciones de alto rendimiento con acceso total al hardware y fluidez nativa.</p>
+        <div class="price">
+          <span class="from i18n" data-es="Desde" data-en="From">Desde</span>
+          <span class="num dynamic-price" data-id="nativas">...</span>
+        </div>
+      </article>
+
+      <article class="service reveal delay-1">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg></div>
+        <h3 class="i18n" data-es="Desarrollo de Apps Multiplataforma (Flutter)" data-en="Cross-Platform Apps (Flutter)">Desarrollo de Apps Multiplataforma (Flutter)</h3>
+        <p class="i18n" data-es="Un solo código para iOS y Android, con reducción de costes y tiempo de lanzamiento." data-en="A single codebase for iOS and Android, reducing costs and time to market.">Un solo código para iOS y Android, con reducción de costes y tiempo de lanzamiento.</p>
+        <div class="price">
+          <span class="from i18n" data-es="Desde" data-en="From">Desde</span>
+          <span class="num dynamic-price" data-id="multi">...</span>
+        </div>
+      </article>
+
+      <article class="service reveal delay-2">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <h3 class="i18n" data-es="Diseño UX/UI" data-en="UX/UI Design">Diseño UX/UI</h3>
+        <p class="i18n" data-es="Interfaces intuitivas y atractivas, con validación de usuarios y prototipado." data-en="Intuitive and attractive interfaces, with user validation and prototyping.">Interfaces intuitivas y atractivas, con validación de usuarios y prototipado.</p>
+        <div class="price">
+          <span class="from i18n" data-es="Desde" data-en="From">Desde</span>
+          <span class="num dynamic-price" data-id="uxui">...</span>
+        </div>
+      </article>
+
+      <article class="service reveal delay-3">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M9 9h6M9 13h4"/></svg></div>
+        <h3 class="i18n" data-es="Consultoría Técnica" data-en="Technical Consulting">Consultoría Técnica</h3>
+        <p class="i18n" data-es="Asesoramiento experto en viabilidad, arquitectura y planificación de tu app." data-en="Expert advice on feasibility, architecture, and planning for your app.">Asesoramiento experto en viabilidad, arquitectura y planificación de tu app.</p>
+        <div class="price">
+          <span class="num dynamic-price" data-id="consultoria">...</span>
+          <span class="unit i18n" data-es="/ hora" data-en="/ hour">/ hora</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========= PROCESO ========= -->
+<section class="process" id="proceso">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow i18n" data-es="Cómo trabajamos" data-en="How we work">Cómo trabajamos</span>
+      <h2 class="i18n" data-es='Un proceso <span class="grad">claro</span>, sin sorpresas.' data-en='A <span class="grad">clear</span> process, no surprises.'>Un proceso <span class="grad">claro</span>, sin sorpresas.</h2>
+      <p class="i18n" data-es="De la primera llamada al despliegue final, sabes en qué punto está tu proyecto." data-en="From the first call to the final deployment, you know where your project stands.">De la primera llamada al despliegue final, sabes en qué punto está tu proyecto.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal"><div class="num">01</div><h4 class="i18n" data-es="Descubrimiento" data-en="Discovery">Descubrimiento</h4><p class="i18n" data-es="Entendemos tu negocio, usuarios y objetivos." data-en="We understand your business, users, and goals.">Entendemos tu negocio, usuarios y objetivos.</p></div>
+      <div class="step reveal delay-1"><div class="num">02</div><h4 class="i18n" data-es="Diseño" data-en="Design">Diseño</h4><p class="i18n" data-es="UX/UI con prototipos validables antes de programar." data-en="UX/UI with validatable prototypes before coding.">UX/UI con prototipos validables antes de programar.</p></div>
+      <div class="step reveal delay-2"><div class="num">03</div><h4 class="i18n" data-es="Desarrollo" data-en="Development">Desarrollo</h4><p class="i18n" data-es="Sprints con entregas continuas y código auditado." data-en="Sprints with continuous deliveries and audited code.">Sprints con entregas continuas y código auditado.</p></div>
+      <div class="step reveal delay-3"><div class="num">04</div><h4 class="i18n" data-es="Lanzamiento" data-en="Launch">Lanzamiento</h4><p class="i18n" data-es="Despliegue, monitorización y soporte post-launch." data-en="Deployment, monitoring, and post-launch support.">Despliegue, monitorización y soporte post-launch.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= CTA BANNER ========= -->
+<section style="padding:40px 0 80px">
+  <div class="container">
+    <div class="cta-banner reveal-scale">
+      <h2 class="i18n" data-es="¿Tienes una idea? Vamos a construirla." data-en="Have an idea? Let's build it.">¿Tienes una idea? Vamos a construirla.</h2>
+      <p class="i18n" data-es="Cuéntanos en qué estás trabajando y te respondemos con una propuesta clara en menos de 24 horas." data-en="Tell us what you are working on and we will reply with a clear proposal in less than 24 hours.">Cuéntanos en qué estás trabajando y te respondemos con una propuesta clara en menos de 24 horas.</p>
+      <a href="#contacto" class="btn i18n" data-es='Hablar con DIRO TECH <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>' data-en='Talk to DIRO TECH <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>'>
+        Hablar con DIRO TECH
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========= CONTACTO ========= -->
+<section id="contacto">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow i18n" data-es="Contacto" data-en="Contact">Contacto</span>
+      <h2 class="i18n" data-es='Empieza tu <span class="grad">proyecto</span> hoy.' data-en='Start your <span class="grad">project</span> today.'>Empieza tu <span class="grad">proyecto</span> hoy.</h2>
+      <p class="i18n" data-es="Atendemos online y desde Ciudad de México, de lunes a sábado." data-en="We serve online and from Mexico City, Monday through Saturday.">Atendemos online y desde Ciudad de México, de lunes a sábado.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3 class="i18n" data-es="Información" data-en="Information">Información</h3>
+        <div class="info-item">
+          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19.86 19.86 0 0 1 2 3.11 1 1 0 0 1 3 2h4.09a1 1 0 0 1 1 .75l1.13 4.52a1 1 0 0 1-.27.95L8 9.91a16 16 0 0 0 6 6l1.69-1.69a1 1 0 0 1 .95-.27l4.52 1.13a1 1 0 0 1 .84 1z"/></svg></div>
+          <div>
+            <span class="lbl i18n" data-es="Teléfono" data-en="Phone">Teléfono</span>
+            <a href="tel:+525631896344">+52 56 3189 6344</a>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+          <div>
+            <span class="lbl i18n" data-es="Email" data-en="Email">Email</span>
+            <a href="mailto:dirotech.apps@gmail.com">dirotech.apps@gmail.com</a>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <span class="lbl i18n" data-es="Ubicación" data-en="Location">Ubicación</span>
+            <span class="val i18n" data-es="Ciudad de México · Atendemos online" data-en="Mexico City · Online services">Ciudad de México · Atendemos online</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div>
+            <span class="lbl i18n" data-es="Horario" data-en="Hours">Horario</span>
+            <span class="val i18n" data-es="Lun – Sáb · 07:00 – 20:00 (GMT-6)" data-en="Mon – Sat · 07:00 – 20:00 (GMT-6)">Lun – Sáb · 07:00 – 20:00 (GMT-6)</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal delay-1" onsubmit="event.preventDefault();this.querySelector('button').textContent='Mensaje preparado — envíalo desde tu correo';">
+        <div class="form-row">
+          <div class="field">
+            <label for="nombre" class="i18n" data-es="Nombre" data-en="Name">Nombre</label>
+            <input id="nombre" type="text" placeholder="Tu nombre" required />
+          </div>
+          <div class="field">
+            <label for="email" class="i18n" data-es="Email" data-en="Email">Email</label>
+            <input id="email" type="email" placeholder="tu@email.com" required />
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:16px">
+          <label for="servicio" class="i18n" data-es="Servicio de interés" data-en="Service of interest">Servicio de interés</label>
+          <select id="servicio">
+            <option>Apps Nativas (iOS / Android)</option>
+            <option>Apps Multiplataforma (Flutter)</option>
+            <option>Diseño UX/UI</option>
+            <option>Consultoría Técnica</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="field" style="margin-bottom:16px">
+          <label for="mensaje" class="i18n" data-es="Cuéntanos tu proyecto" data-en="Tell us about your project">Cuéntanos tu proyecto</label>
+          <textarea id="mensaje" placeholder="..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary i18n" data-es='Enviar solicitud <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>' data-en='Send request <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>'>
+          Enviar solicitud
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ========= FOOTER ========= -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="foot-brand">
+          <img src="assets/logo.png" alt="DIRO TECH" />
+          <b>DIRO TECH</b>
+        </div>
+        <p class="i18n" data-es="Construimos el software que tu idea merece. Apps, web, ciberseguridad y automatización para hacer crecer tu negocio." data-en="We build the software your idea deserves. Apps, web, cybersecurity, and automation to grow your business.">Construimos el software que tu idea merece. Apps, web, ciberseguridad y automatización para hacer crecer tu negocio.</p>
+      </div>
+      <div class="foot-col">
+        <h5 class="i18n" data-es="Servicios" data-en="Services">Servicios</h5>
+        <ul>
+          <li><a href="#servicios" class="i18n" data-es="Apps Nativas" data-en="Native Apps">Apps Nativas</a></li>
+          <li><a href="#servicios" class="i18n" data-es="Apps Multiplataforma" data-en="Cross-Platform">Apps Multiplataforma</a></li>
+          <li><a href="#servicios" class="i18n" data-es="Diseño UX/UI" data-en="UX/UI Design">Diseño UX/UI</a></li>
+          <li><a href="#servicios" class="i18n" data-es="Consultoría" data-en="Consulting">Consultoría</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5 class="i18n" data-es="Contacto" data-en="Contact">Contacto</h5>
+        <ul>
+          <li><a href="tel:+525631896344">+52 56 3189 6344</a></li>
+          <li><a href="mailto:dirotech.apps@gmail.com">dirotech.apps@gmail.com</a></li>
+          <li><a href="#" class="i18n" data-es="Ciudad de México · Online" data-en="Mexico City · Online">Ciudad de México · Online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="i18n" data-es='© <span id="year"></span> DIRO TECH · Todos los derechos reservados.' data-en='© <span id="year"></span> DIRO TECH · All rights reserved.'>© <span id="year"></span> DIRO TECH · Todos los derechos reservados.</span>
+      <span class="mono" style="color:var(--accent)" class="i18n" data-es="› construyendo el futuro" data-en="› building the future">› construyendo el futuro</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Año dinámico
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ====== IDIOMA (Inglés / Español) ======
+  const langToggle = document.getElementById('langToggle');
+  const htmlTag = document.getElementById('htmlTag');
+  let currentLang = localStorage.getItem('lang') || 'es';
+
+  function applyLanguage(lang) {
+    document.querySelectorAll('.i18n').forEach(el => {
+      if(el.dataset[lang]) el.innerHTML = el.dataset[lang];
+    });
+    langToggle.textContent = lang === 'es' ? 'EN' : 'ES';
+    htmlTag.lang = lang;
+    localStorage.setItem('lang', lang);
+    currentLang = lang;
+  }
+  
+  applyLanguage(currentLang);
+
+  langToggle.addEventListener('click', () => {
+    applyLanguage(currentLang === 'es' ? 'en' : 'es');
+  });
+
+  // ====== PRECIOS DINÁMICOS POR PAÍS ======
+  // Matriz de precios definidos por el usuario
+  const pricingMatrix = {
+    nativas: { usd: "$3,999 USD", mxn: "$79,900 MXN", eur: "3.999 €" },
+    multi: { usd: "$2,499 USD", mxn: "$49,900 MXN", eur: "2.499 €" },
+    uxui: { usd: "$1,299 USD", mxn: "$18,900 MXN", eur: "1.299 €" },
+    consultoria: { usd: "$99 USD", mxn: "$1,900 MXN", eur: "99 €" }
+  };
+
+  function updatePrices(currency) {
+    document.querySelectorAll('.dynamic-price').forEach(el => {
+      const id = el.dataset.id;
+      if (pricingMatrix[id] && pricingMatrix[id][currency]) {
+        el.textContent = pricingMatrix[id][currency];
+      }
+    });
+  }
+
+  // Detección de país súper segura (detectando la zona horaria de la computadora del usuario).
+  // Esto nunca falla al probar en local y no es bloqueado por extensiones de privacidad.
+  function detectCurrency() {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      if (tz.includes('Mexico')) return 'mxn';
+      if (tz.includes('Europe') || tz.includes('Madrid') || tz.includes('Paris') || tz.includes('Berlin')) return 'eur';
+      return 'usd';
+    } catch (error) {
+      return 'usd'; // Fallback por defecto si hay un error muy inusual
+    }
+  }
+
+  updatePrices(detectCurrency());
+
+  // Nav scrolled
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 30) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Burger
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal, .reveal-scale').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
