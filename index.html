@@ -1,757 +1,625 @@
 <!DOCTYPE html>
-<html lang="es" id="htmlTag">
+<html lang="es" data-theme="dark">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title data-es="DIRO TECH — Construimos el software que tu idea merece" data-en="DIRO TECH — We build the software your idea deserves">DIRO TECH — Construimos el software que tu idea merece</title>
-<meta name="description" content="DIRO TECH — Desarrollo web y apps, ciberseguridad, automatización y soporte técnico. Ciudad de México y atención online." />
-<link rel="icon" href="assets/logo.png" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIRO TECH — Construimos el software que tu idea merece</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    /* Tema Claro */
-    --bg:#f8fafc;
-    --bg-2:#ffffff;
-    --surface:#ffffff;
-    --surface-2:#f1f5f9;
-    --line:rgba(30,79,214,.15);
-    --text:#0f172a;
-    --muted:#64748b;
-    --primary:#1e4fd6;       
-    --primary-2:#2b6cf3;
-    --accent:#0ea5e9;         
-    --accent-2:#14b8a6;
-    --grad:linear-gradient(135deg,#1e4fd6 0%,#2b6cf3 45%,#0ea5e9 100%);
-    --grad-soft:linear-gradient(135deg,rgba(30,79,214,.1),rgba(14,165,233,.1));
-    --shadow:0 20px 60px -20px rgba(43,108,243,.25);
-    --radius:18px;
-  }
+:root {
+  --bg:#040d1a;--bg2:#071526;--bg3:#0a1d35;
+  --surface:#0d2040;--surface2:#102848;
+  --border:rgba(30,144,255,.18);
+  --text:#e8f4fd;--text2:#7aa8cc;--text3:#445f78;
+  --primary:#1e90ff;--accent:#00d4ff;
+  --grad:linear-gradient(135deg,#1e90ff,#00d4ff);
+  --shadow:0 24px 64px rgba(0,0,0,.55);
+  --card:rgba(10,25,50,.75);
+  --nav:rgba(4,13,26,.88);
+  --logo-border:rgba(255,255,255,.14);
+}
+[data-theme="light"]{
+  --bg:#f0f6ff;--bg2:#e4effc;--bg3:#d8e8f8;
+  --surface:#fff;--surface2:#f5f9ff;
+  --border:rgba(30,144,255,.2);
+  --text:#071526;--text2:#2a4a6b;--text3:#5a7a9b;
+  --shadow:0 24px 64px rgba(14,80,180,.1);
+  --card:rgba(255,255,255,.92);
+  --nav:rgba(240,246,255,.92);
+  --logo-border:transparent;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .35s,color .35s}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px}
 
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:'Inter',system-ui,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.6;
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
-  }
+/* NAV */
+#mainnav{position:fixed;top:0;left:0;right:0;z-index:999;height:68px;padding:0 40px;display:flex;flex-wrap:nowrap;align-items:center;background:var(--nav);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:background .3s}
+.nav-logo{flex:0 0 auto;border:1px solid var(--logo-border);border-radius:10px;padding:5px 10px;transition:border-color .35s;display:flex;align-items:center}
+.nav-logo img{height:40px;width:auto;display:block;transition:filter .4s ease}
+[data-theme="dark"] .nav-logo img{filter:brightness(0) invert(1)}
+.nav-links{flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:28px;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:13.5px;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--primary)}
+.nav-ctrl{flex:0 0 auto;display:flex;align-items:center;gap:8px;margin-left:auto}
+.btn-ctrl{background:var(--surface);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;letter-spacing:.3px;display:inline-flex;align-items:center;gap:5px}
+.btn-ctrl:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-ctrl svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.cur-sel{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px 12px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:border-color .2s;appearance:none;-webkit-appearance:none;padding-right:28px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237aa8cc' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.cur-sel:focus{outline:none;border-color:var(--primary)}
 
-  ::-webkit-scrollbar{width:10px}
-  ::-webkit-scrollbar-track{background:#f8fafc}
-  ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#1e4fd6,#0ea5e9);border-radius:10px}
-  ::selection{background:rgba(14,165,233,.35);color:#fff}
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 40px 80px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% -10%,rgba(30,144,255,.13),transparent 70%),radial-gradient(ellipse 50% 60% at 85% 110%,rgba(0,212,255,.09),transparent 70%);pointer-events:none;will-change:transform}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;opacity:.35;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.12;pointer-events:none;will-change:transform}
+.orb1{width:420px;height:420px;background:#1e90ff;top:-140px;left:-100px}
+.orb2{width:320px;height:320px;background:#00d4ff;bottom:-80px;right:-80px}
+.orb3{width:180px;height:180px;background:#7b68ee;top:45%;left:72%}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:880px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(30,144,255,.1);border:1px solid rgba(30,144,255,.28);color:var(--accent);padding:8px 22px;border-radius:100px;font-size:13px;font-weight:700;margin-bottom:36px;letter-spacing:.6px}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.4rem,5.5vw,4.8rem);font-weight:800;line-height:1.08;margin-bottom:24px;letter-spacing:-1.5px}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(1rem,1.8vw,1.2rem);color:var(--text2);margin-bottom:52px;line-height:1.75;max-width:580px;margin-left:auto;margin-right:auto}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-p{background:var(--grad);color:#fff;padding:16px 38px;border-radius:12px;font-size:15px;font-weight:700;text-decoration:none;transition:all .3s;border:none;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.3px;display:inline-block}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(30,144,255,.42)}
+.btn-s{background:transparent;color:var(--text);padding:16px 38px;border-radius:12px;font-size:15px;font-weight:600;text-decoration:none;border:1px solid var(--border);transition:all .3s;display:inline-block}
+.btn-s:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-3px)}
+.scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text3);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.scroll-arrow{width:24px;height:24px;border-right:2px solid var(--text3);border-bottom:2px solid var(--text3);transform:rotate(45deg);animation:bounce 1.6s infinite}
+@keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)}}
 
-  body::before{
-    content:"";
-    position:fixed;inset:0;
-    background-image:
-      linear-gradient(rgba(30,79,214,.05) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(30,79,214,.05) 1px,transparent 1px);
-    background-size:60px 60px;
-    mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%);
-    -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%);
-    z-index:-2;
-    pointer-events:none;
-  }
-  body::after{
-    content:"";
-    position:fixed;
-    top:-20%;left:-10%;
-    width:60vw;height:60vw;
-    background:radial-gradient(circle,rgba(43,108,243,.05),transparent 60%);
-    filter:blur(40px);
-    z-index:-2;pointer-events:none;
-    animation:float 18s ease-in-out infinite alternate;
-  }
-  @keyframes float{
-    from{transform:translate(0,0)}
-    to{transform:translate(15vw,10vh)}
-  }
+/* SECTIONS */
+section{padding:108px 48px}
+.wrap{max-width:1200px;margin:0 auto}
+.sec-label{font-size:11px;font-weight:800;letter-spacing:3.5px;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,3.8vw,3rem);font-weight:800;line-height:1.18;margin-bottom:14px;letter-spacing:-.6px}
+.sec-title .grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-sub{font-size:1.05rem;color:var(--text2);max-width:540px;line-height:1.75;margin-bottom:68px}
 
-  .container{max-width:1200px;margin:0 auto;padding:0 24px}
-  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.15}
-  .mono{font-family:'JetBrains Mono',monospace}
+/* SERVICES */
+.services{background:var(--bg2)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:24px}
+.svc-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;transition:all .3s;position:relative;overflow:hidden;backdrop-filter:blur(12px)}
+.svc-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:0;transition:opacity .3s}
+.svc-card:hover{transform:translateY(-7px);box-shadow:0 20px 56px rgba(30,144,255,.14);border-color:rgba(30,144,255,.38)}
+.svc-card:hover::after{opacity:1}
+.svc-ico{width:58px;height:58px;background:rgba(30,144,255,.1);border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s}
+.svc-ico svg{width:26px;height:26px;stroke:var(--primary);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.svc-card:hover .svc-ico{background:rgba(30,144,255,.2)}
+.svc-card:hover .svc-ico svg{stroke:var(--accent)}
+.svc-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.22rem;font-weight:700;margin-bottom:12px}
+.svc-card p{color:var(--text2);line-height:1.72;font-size:.93rem;margin-bottom:22px}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{background:rgba(30,144,255,.07);border:1px solid rgba(30,144,255,.18);color:var(--accent);padding:4px 11px;border-radius:100px;font-size:11.5px;font-weight:700;letter-spacing:.2px}
 
-  /* ========= NAV ========= */
-  .nav{
-    position:fixed;top:0;left:0;right:0;
-    z-index:100;
-    padding:18px 0;
-    transition:all .3s ease;
-  }
-  .nav.scrolled{
-    background:rgba(248, 250, 252, 0.85);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    border-bottom:1px solid var(--line);
-    padding:12px 0;
-  }
-  .nav .container{display:flex;align-items:center;justify-content:space-between}
-  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
-  
-  /* Logo completamente limpio y sin fondo */
-  .brand img{
-    height:70px; 
-    width:auto;
-    display:block;
-    transition:height .3s ease, transform .3s ease;
-  }
-  .nav.scrolled .brand img{height:55px}
-  .brand:hover img{
-    transform:scale(1.05);
-  }
+/* STATS */
+.stats{background:var(--bg);position:relative;overflow:hidden}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center;margin-top:64px}
+.stat-n{font-family:'Space Grotesk',sans-serif;font-size:3.6rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px}
+.stat-l{color:var(--text2);font-size:.9rem;font-weight:500}
 
-  .nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
+/* PRICING */
+.pricing{background:var(--bg2)}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:28px;align-items:start}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:44px 36px;position:relative;transition:all .3s;backdrop-filter:blur(12px)}
+.price-card.hot{border-color:var(--primary);background:linear-gradient(145deg,rgba(30,144,255,.1),rgba(0,212,255,.05));transform:scale(1.04)}
+.price-card.hot::before{content:attr(data-badge);position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;padding:6px 22px;border-radius:100px;font-size:11.5px;font-weight:800;white-space:nowrap;letter-spacing:.5px}
+.price-card:hover:not(.hot){transform:translateY(-5px);box-shadow:var(--shadow)}
+.price-name{font-size:.85rem;font-weight:800;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:18px}
+.price-amt{font-family:'Space Grotesk',sans-serif;font-size:2.9rem;font-weight:900;line-height:1;margin-bottom:8px;display:flex;align-items:flex-start;gap:2px}
+.price-sym{font-size:1.4rem;margin-top:7px;font-weight:700}
+.price-suf{font-size:.95rem;color:var(--text3);font-weight:500;align-self:flex-end;margin-bottom:4px}
+.price-desc{color:var(--text2);font-size:.88rem;margin-bottom:32px;line-height:1.65}
+.price-feats{list-style:none;margin-bottom:36px}
+.price-feats li{display:flex;align-items:flex-start;gap:11px;padding:9px 0;font-size:.88rem;color:var(--text2);border-bottom:1px solid var(--border)}
+.price-feats li:last-child{border-bottom:none}
+.price-feats li::before{content:'✓';color:var(--accent);font-weight:900;flex-shrink:0;margin-top:1px}
 
-  .nav-links{display:flex;gap:32px;align-items:center}
-  .nav-links a{
-    color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;
-    transition:color .25s;position:relative;
-  }
-  .nav-links a:hover{color:var(--text)}
-  .nav-links a::after{
-    content:"";position:absolute;left:0;bottom:-6px;
-    width:0;height:2px;background:var(--grad);
-    transition:width .3s;
-  }
-  .nav-links a:hover::after{width:100%}
-  .nav-cta{
-    background:var(--grad);color:#fff !important;
-    padding:10px 20px;border-radius:999px;font-weight:600;
-    box-shadow:0 6px 20px -6px rgba(43,108,243,.4);
-  }
-  .nav-cta::after{display:none}
-  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px -6px rgba(43,108,243,.6)}
+/* PROCESS */
+.process{background:var(--bg)}
+.proc-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:28px;margin-top:68px}
+.proc-step{text-align:center;padding:28px 20px}
+.step-n{width:54px;height:54px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;font-weight:900;color:#fff;margin:0 auto 20px;box-shadow:0 8px 24px rgba(30,144,255,.35)}
+.proc-step h4{font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:8px;font-size:1rem}
+.proc-step p{color:var(--text2);font-size:.875rem;line-height:1.65}
 
-  /* Botón de Idioma */
-  .lang-btn {
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    color: var(--text);
-    font-weight: 600;
-    font-size: 0.85rem;
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'Space Grotesk', sans-serif;
-  }
-  .lang-btn:hover {
-    border-color: var(--accent);
-    color: var(--primary);
-  }
+/* CONTACT */
+.contact{background:var(--bg2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:68px;align-items:start;margin-top:60px}
+.cinfo h3{font-family:'Space Grotesk',sans-serif;font-size:1.55rem;font-weight:800;margin-bottom:16px}
+.cinfo p{color:var(--text2);line-height:1.75;margin-bottom:40px;font-size:.95rem}
+.cdet{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.cico{width:44px;height:44px;background:rgba(30,144,255,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cico svg{width:20px;height:20px;stroke:var(--primary);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.cdet strong{display:block;font-size:.8rem;color:var(--text3);margin-bottom:3px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.cdet span{font-size:.92rem}
+.cform{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:44px;backdrop-filter:blur(12px)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fg{margin-bottom:20px}
+.fg label{display:block;font-size:12.5px;font-weight:700;color:var(--text2);margin-bottom:8px;letter-spacing:.3px}
+.fg input,.fg textarea,.fg select{width:100%;background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:13px 16px;border-radius:11px;font-size:14px;font-family:'Inter',sans-serif;transition:border-color .2s}
+.fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--primary)}
+.fg textarea{resize:vertical;min-height:118px}
 
-  .burger{display:none;background:none;border:0;color:var(--text);cursor:pointer;padding:8px}
-  .burger svg{width:28px;height:28px}
+/* FOOTER */
+footer{background:var(--bg);padding:44px 48px;border-top:1px solid var(--border)}
+.foot-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.foot-logo-wrap{border:1px solid var(--logo-border);border-radius:8px;padding:4px 10px;display:inline-flex;align-items:center;transition:border-color .35s}
+.foot-logo{height:34px;width:auto;display:block;transition:filter .4s ease}
+[data-theme="dark"] .foot-logo{filter:brightness(0) invert(1)}
+.foot-copy{color:var(--text3);font-size:.85rem}
+.foot-links{display:flex;gap:24px}
+.foot-links a{color:var(--text3);text-decoration:none;font-size:.85rem;transition:color .2s}
+.foot-links a:hover{color:var(--primary)}
 
-  /* MEDIA QUERY - AJUSTES PARA MÓVIL (MENÚ) */
-  @media (max-width:860px){
-    .brand img { height: 45px; }
-    .nav.scrolled .brand img { height: 40px; }
-    .nav-controls { gap: 12px; }
+/* AVAILABLE DOT */
+.avail-dot{width:9px;height:9px;background:#22c55e;border-radius:50%;display:inline-block;flex-shrink:0;animation:pg 2s infinite}
+@keyframes pg{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}60%{box-shadow:0 0 0 7px rgba(34,197,94,0)}}
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:9998;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.42);transition:transform .25s,box-shadow .25s;text-decoration:none}
+.wa-float:hover{transform:scale(1.12);box-shadow:0 10px 32px rgba(37,211,102,.58)}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+/* ANIMATIONS */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .72s ease,transform .72s ease}
+.rv.on{opacity:1;transform:translateY(0)}
+.rl{opacity:0;transform:translateX(-32px);transition:opacity .72s ease,transform .72s ease}
+.rl.on{opacity:1;transform:translateX(0)}
+.rs{opacity:0;transform:scale(.88);transition:opacity .6s ease,transform .6s ease}
+.rs.on{opacity:1;transform:scale(1)}
+.d1{transition-delay:.08s}.d2{transition-delay:.17s}.d3{transition-delay:.26s}.d4{transition-delay:.35s}.d5{transition-delay:.44s}
 
-    .nav-links{
-      position:fixed;top:64px;left:0;right:0;
-      flex-direction:column;gap:0;padding:20px 0;
-      background:rgba(255,255,255,.98);backdrop-filter:blur(18px);
-      border-bottom:1px solid var(--line);
-      transform:translateY(-120%);transition:transform .3s;
-    }
-    .nav-links.open{transform:translateY(0)}
-    .nav-links a{padding:14px 24px;width:100%;text-align:center}
-    .nav-links a::after{display:none}
-    .nav-cta{margin:8px auto 0;display:inline-block;width:auto}
-    .burger{display:block; padding:4px;}
-  }
-
-  /* ========= HERO ========= */
-  .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:140px 0 80px;overflow:hidden;}
-  .hero-glow{position:absolute;width:800px;height:800px;right:-200px;top:-200px;background:radial-gradient(circle,rgba(14,165,233,.08),transparent 60%);filter:blur(60px);pointer-events:none;z-index:0;}
-  .hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;}
-  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:var(--grad-soft);border:1px solid var(--line);font-size:.82rem;font-weight:500;color:var(--accent);margin-bottom:24px;}
-  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-  .hero h1{font-size:clamp(2.4rem,5.5vw,4.4rem);margin-bottom:20px;}
-  .hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero p.lead{font-size:clamp(1.05rem,1.4vw,1.2rem);color:var(--muted);max-width:560px;margin-bottom:36px;}
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;text-decoration:none;font-size:.98rem;border:1px solid transparent;transition:transform .25s,box-shadow .25s,background .25s;cursor:pointer;}
-  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 30px -10px rgba(43,108,243,.4)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px rgba(43,108,243,.6)}
-  .btn-ghost{background:transparent;color:var(--text);border-color:var(--line)}
-  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-  .btn svg{width:18px;height:18px}
-
-  .hero-visual{position:relative;perspective:1200px;}
-  .terminal{background:rgba(255, 255, 255, 0.85);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transform:rotateY(-8deg) rotateX(4deg);transition:transform .6s ease;}
-  .terminal:hover{transform:rotateY(0) rotateX(0)}
-  .term-bar{display:flex;gap:6px;padding:14px 16px;border-bottom:1px solid var(--line);background:rgba(241, 245, 249, 0.8);}
-  .term-bar span{width:12px;height:12px;border-radius:50%;background:#cbd5e1}
-  .term-bar span:nth-child(1){background:#ff5f57}
-  .term-bar span:nth-child(2){background:#febc2e}
-  .term-bar span:nth-child(3){background:#28c840}
-  .term-body{padding:24px;font-family:'JetBrains Mono',monospace;font-size:.88rem;line-height:1.9}
-  .term-body .l1{color:var(--muted)}
-  .term-body .l2{color:var(--primary)}
-  .term-body .l3{color:#334155}
-  .term-body .l4{color:var(--accent-2)}
-  .term-body .cursor{display:inline-block;width:8px;height:1em;background:var(--accent);vertical-align:-2px;animation:blink 1s steps(2) infinite;margin-left:4px}
-  @keyframes blink{50%{opacity:0}}
-
-  .floating-card{position:absolute;background:rgba(255, 255, 255, 0.95);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;font-size:.85rem;font-weight:500;box-shadow:0 12px 30px -10px rgba(0,0,0,.1);animation:floatY 4s ease-in-out infinite alternate;}
-  .floating-card .ic{width:36px;height:36px;border-radius:10px;background:var(--grad);display:grid;place-items:center;color:#fff;}
-  .fc-1{top:-20px;left:-30px}
-  .fc-2{bottom:-20px;right:-20px;animation-delay:1.5s}
-  @keyframes floatY{from{transform:translateY(0)}to{transform:translateY(-12px)}}
-
-  @media (max-width:860px){
-    .hero-grid{grid-template-columns:1fr;gap:50px}
-    .hero-visual{display:none}
-  }
-
-  /* ========= SECTION COMMON ========= */
-  section{padding:120px 0;position:relative}
-  .section-head{text-align:center;max-width:720px;margin:0 auto 70px}
-  .eyebrow{display:inline-block;font-family:'JetBrains Mono',monospace;color:var(--primary);font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;}
-  .section-head h2{font-size:clamp(2rem,3.5vw,3rem);margin-bottom:18px}
-  .section-head h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .section-head p{color:var(--muted);font-size:1.05rem}
-
-  /* ========= ABOUT ========= */
-  .about{position:relative}
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-  .about-text h2{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:24px}
-  .about-text p{color:var(--muted);margin-bottom:18px;font-size:1.02rem}
-  .pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:30px}
-  .pillar{padding:20px;border:1px solid var(--line);border-radius:14px;background:rgba(255, 255, 255, 0.8);transition:transform .3s,border-color .3s,background .3s;box-shadow: 0 4px 20px rgba(0,0,0,0.03);}
-  .pillar:hover{transform:translateY(-4px);border-color:var(--accent);background:#fff;}
-  .pillar .ic{width:42px;height:42px;border-radius:12px;background:var(--grad-soft);display:grid;place-items:center;color:var(--primary);margin-bottom:12px;}
-  .pillar h4{font-size:1rem;margin-bottom:6px}
-  .pillar p{font-size:.9rem;color:var(--muted);margin:0}
-
-  .about-visual{position:relative;aspect-ratio:1/1;border-radius:24px;background:linear-gradient(135deg,#ffffff 0%,#f1f5f9 60%,#e2e8f0 100%);border:1px solid var(--line);overflow:hidden;display:grid;place-items:center;box-shadow:0 30px 80px -30px rgba(0,0,0,.1);}
-  .about-visual img{position:relative;z-index:2;width:62%;max-width:340px;}
-
-  @media (max-width:860px){
-    .about-grid{grid-template-columns:1fr;gap:50px}
-    .pillars{grid-template-columns:1fr}
-  }
-
-  /* ========= SERVICIOS ========= */
-  .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
-  .service{position:relative;padding:36px 32px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,1),rgba(248,250,252,1));border:1px solid var(--line);overflow:hidden;transition:transform .35s,border-color .35s;box-shadow: 0 4px 20px rgba(0,0,0,0.03);}
-  .service::before{content:"";position:absolute;inset:0;background:radial-gradient(600px circle at var(--mx,50%) var(--my,0%),rgba(14,165,233,.08),transparent 40%);opacity:0;transition:opacity .4s;pointer-events:none;}
-  .service:hover{transform:translateY(-6px);border-color:rgba(14,165,233,.4)}
-  .service:hover::before{opacity:1}
-  .service-icon{width:54px;height:54px;border-radius:14px;background:var(--grad);display:grid;place-items:center;color:#fff;margin-bottom:24px;box-shadow:0 10px 24px -8px rgba(43,108,243,.3);}
-  .service-icon svg{width:26px;height:26px}
-  .service h3{font-size:1.3rem;margin-bottom:12px}
-  .service p{color:var(--muted);font-size:.96rem;margin-bottom:24px;min-height:50px}
-  .service .price{display:flex;align-items:baseline;gap:6px;padding-top:20px;border-top:1px dashed var(--line);}
-  .price .from{font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
-  .price .num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.6rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .price .unit{font-size:.85rem;color:var(--muted)}
-
-  @media (max-width:760px){
-    .services-grid{grid-template-columns:1fr}
-    .service p{min-height:auto}
-  }
-
-  /* ========= PROCESS ========= */
-  .process{position:relative;background:linear-gradient(180deg,transparent,rgba(255,255,255,.6),transparent)}
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;}
-  .steps::before{content:"";position:absolute;top:30px;left:8%;right:8%;height:2px;background:linear-gradient(90deg,transparent,var(--accent) 20%,var(--primary) 80%,transparent);opacity:.2;}
-  .step{position:relative;text-align:center;padding:0 8px}
-  .step .num{position:relative;z-index:2;width:60px;height:60px;border-radius:50%;background:#ffffff;border:2px solid var(--accent);display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.3rem;color:var(--primary);margin:0 auto 22px;transition:all .3s;box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
-  .step:hover .num{background:var(--grad);border-color:transparent;color:#fff;transform:scale(1.08)}
-  .step h4{font-size:1.05rem;margin-bottom:8px}
-  .step p{font-size:.9rem;color:var(--muted)}
-  @media (max-width:760px){
-    .steps{grid-template-columns:repeat(2,1fr)}
-    .steps::before{display:none}
-  }
-
-  /* ========= CTA BANNER ========= */
-  .cta-banner{position:relative;background:var(--grad);border-radius:28px;padding:64px 48px;text-align:center;overflow:hidden;box-shadow:0 30px 80px -30px rgba(43,108,243,.4);}
-  .cta-banner::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(255,255,255,.18),transparent 50%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.12),transparent 50%);}
-  .cta-banner h2{position:relative;font-size:clamp(1.8rem,3vw,2.6rem);color:#fff;margin-bottom:14px}
-  .cta-banner p{position:relative;color:rgba(255,255,255,.9);max-width:560px;margin:0 auto 30px}
-  .cta-banner .btn{position:relative;background:#fff;color:var(--primary)}
-  .cta-banner .btn:hover{background:var(--bg);color:var(--text)}
-
-  /* ========= CONTACTO ========= */
-  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:start}
-  .contact-info{padding:36px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,1),rgba(248,250,252,1));border:1px solid var(--line);box-shadow: 0 4px 20px rgba(0,0,0,0.03);}
-  .contact-info h3{font-size:1.3rem;margin-bottom:24px}
-  .info-item{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start}
-  .info-item .ic{width:40px;height:40px;flex-shrink:0;border-radius:10px;background:var(--grad-soft);display:grid;place-items:center;color:var(--primary);}
-  .info-item .lbl{display:block;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px}
-  .info-item a, .info-item span.val{color:var(--text);text-decoration:none;font-weight:500;font-size:.98rem;transition:color .25s}
-  .info-item a:hover{color:var(--primary)}
-
-  .contact-form{padding:36px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,1),rgba(248,250,252,1));border:1px solid var(--line);box-shadow: 0 4px 20px rgba(0,0,0,0.03);}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-  .field{display:flex;flex-direction:column;gap:8px}
-  .field label{font-size:.82rem;color:var(--muted);font-weight:500}
-  .field input,.field select,.field textarea{background:rgba(248, 250, 252, 0.8);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--text);font-family:inherit;font-size:.95rem;transition:border-color .25s,background .25s; width: 100%; box-sizing: border-box;}
-  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,1);}
-  .field textarea{resize:vertical;min-height:120px}
-  .contact-form .btn{margin-top:8px;width:100%;justify-content:center}
-
-  /* MEDIA QUERY - AJUSTES PARA MÓVIL (CONTACTO) */
-  @media (max-width:860px){
-    .contact-grid{
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-    .form-row{
-      grid-template-columns: 1fr;
-    }
-    .contact-info, .contact-form {
-      padding: 28px 20px; /* Reducimos el padding lateral para que encaje perfecto */
-      width: 100%;
-      max-width: 100%;
-      overflow: hidden; /* Evita que cualquier elemento interno sobresalga */
-    }
-    .info-item a, .info-item span.val {
-      word-break: break-word; /* Fuerza al email largo a bajar de línea en lugar de empujar la pantalla */
-      overflow-wrap: break-word;
-    }
-  }
-
-  /* ========= FOOTER ========= */
-  footer{border-top:1px solid var(--line);padding:60px 0 30px;background:rgba(248, 250, 252, 0.9);}
-  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:50px;margin-bottom:40px}
-  .foot-brand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
-  
-  .foot-brand img{height:46px}
-  
-  .foot-brand b{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .foot-col p{color:var(--muted);font-size:.92rem;max-width:340px}
-  .foot-col h5{font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text);margin-bottom:18px;font-family:'Space Grotesk'}
-  .foot-col ul{list-style:none}
-  .foot-col li{margin-bottom:10px}
-  .foot-col a{color:var(--muted);text-decoration:none;font-size:.92rem;transition:color .25s}
-  .foot-col a:hover{color:var(--primary)}
-  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:.85rem;}
-  @media (max-width:760px){.foot-grid{grid-template-columns:1fr;gap:30px}}
-
-  /* ========= REVEAL ANIMATIONS ========= */
-  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
-  .reveal.visible{opacity:1;transform:translateY(0)}
-  .reveal.delay-1{transition-delay:.1s}
-  .reveal.delay-2{transition-delay:.2s}
-  .reveal.delay-3{transition-delay:.3s}
-  .reveal.delay-4{transition-delay:.4s}
-  .reveal-scale{opacity:0;transform:scale(.92);transition:opacity .8s ease,transform .8s ease}
-  .reveal-scale.visible{opacity:1;transform:scale(1)}
-
-  @media (prefers-reduced-motion:reduce){
-    .reveal,.reveal-scale{opacity:1 !important;transform:none !important}
-    *{animation:none !important;transition:none !important}
-  }
+/* RESPONSIVE */
+@media(max-width:900px){
+  #mainnav{padding:0 20px;height:60px}
+  .nav-links{display:none}
+  section{padding:72px 24px}
+  .hero{padding:100px 24px 60px}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:28px}
+  .contact-grid{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  .price-card.hot{transform:scale(1)}
+  footer{padding:36px 24px}
+}
+@media(max-width:480px){
+  .hero h1{font-size:2rem}
+  .stat-n{font-size:2.7rem}
+}
 </style>
 </head>
 <body>
 
-<header class="nav" id="nav">
-  <div class="container">
-    <a href="#top" class="brand" aria-label="DIRO TECH">
-      <img src="assets/logo.png" alt="DIRO TECH" />
-    </a>
-    <div class="nav-controls">
-      <nav class="nav-links" id="navLinks">
-        <a href="#servicios" class="i18n" data-es="Servicios" data-en="Services">Servicios</a>
-        <a href="#nosotros" class="i18n" data-es="Nosotros" data-en="About Us">Nosotros</a>
-        <a href="#proceso" class="i18n" data-es="Proceso" data-en="Process">Proceso</a>
-        <a href="#contacto" class="nav-cta i18n" data-es="Hablemos" data-en="Let's Talk">Hablemos</a>
-      </nav>
-      <button id="langToggle" class="lang-btn">EN</button>
-      <button class="burger" id="burger" aria-label="Menú">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
+<!-- ═══ NAV ═══ -->
+<nav id="mainnav">
+  <div class="nav-logo">
+    <img src="assets/logo.png" alt="DIRO TECH">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#servicios" data-k="nav_s">Servicios</a></li>
+    <li><a href="#precios" data-k="nav_p">Precios</a></li>
+    <li><a href="#nosotros" data-k="nav_a">Nosotros</a></li>
+    <li><a href="#contacto" data-k="nav_c">Contacto</a></li>
+  </ul>
+  <div class="nav-ctrl">
+    <select class="cur-sel" id="curSel" onchange="setCur(this.value)">
+      <option value="USD">$ USD</option>
+      <option value="EUR">€ EUR</option>
+      <option value="MXN">MXN</option>
+      <option value="COP">COP</option>
+      <option value="ARS">ARS</option>
+      <option value="CLP">CLP</option>
+      <option value="BRL">R$ BRL</option>
+      <option value="GBP">£ GBP</option>
+    </select>
+    <button class="btn-ctrl" onclick="toggleLang()" id="langBtn">EN</button>
+    <button class="btn-ctrl" onclick="toggleTheme()" id="themeBtn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="inicio">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-grid"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="avail-dot"></span>
+      <span data-k="hero_badge">Disponible para trabajar</span>
+    </div>
+    <h1><span data-k="hero_h1">Construimos el software</span><br><span class="grad" data-k="hero_h1g">que tu idea merece.</span></h1>
+    <p data-k="hero_sub">Desarrollo de apps, diseño web, auditorías y automatización para empresas que quieren liderar su mercado.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn-p" data-k="hero_cta1">Solicitar Propuesta</a>
+      <a href="#servicios" class="btn-s" data-k="hero_cta2">Ver Servicios</a>
     </div>
   </div>
-</header>
-
-<section class="hero" id="top">
-  <div class="hero-glow"></div>
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-text">
-        <div class="pill reveal"><span class="dot"></span> <span class="i18n" data-es="Disponible para nuevos proyectos" data-en="Available for new projects">Disponible para nuevos proyectos</span></div>
-        <h1 class="reveal delay-1 i18n" data-es='Construimos el <span class="grad">software</span> que tu idea merece.' data-en='We build the <span class="grad">software</span> your idea deserves.'>
-          Construimos el <span class="grad">software</span> que tu idea merece.
-        </h1>
-        <p class="lead reveal delay-2 i18n" data-es="Desarrollo web y de apps, ciberseguridad, automatización y soporte técnico. Llevamos tu proyecto desde la idea hasta producción con código limpio, interfaces intuitivas y entregas que se sienten profesionales." data-en="Web and app development, cybersecurity, automation, and tech support. We take your project from idea to production with clean code, intuitive interfaces, and professional deliveries.">
-          Desarrollo web y de apps, ciberseguridad, automatización y soporte técnico.
-          Llevamos tu proyecto desde la idea hasta producción con código limpio,
-          interfaces intuitivas y entregas que se sienten profesionales.
-        </p>
-        <div class="cta-row reveal delay-3">
-          <a href="#contacto" class="btn btn-primary i18n" data-es='Solicita una propuesta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>' data-en='Request a proposal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>'>
-            Solicita una propuesta
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#servicios" class="btn btn-ghost i18n" data-es="Ver servicios" data-en="View services">Ver servicios</a>
-        </div>
-      </div>
-
-      <div class="hero-visual reveal-scale delay-2">
-        <div class="terminal">
-          <div class="term-bar"><span></span><span></span><span></span></div>
-          <div class="term-body">
-            <div class="l1"># dirotech.apps</div>
-            <div class="l2">$ deploy --target production</div>
-            <div class="l3">› Building app...</div>
-            <div class="l3">› Running security scan ✓</div>
-            <div class="l3">› Optimizing assets ✓</div>
-            <div class="l4 i18n" data-es='✓ Listo. Tu producto en línea.<span class="cursor"></span>' data-en='✓ Done. Your product is live.<span class="cursor"></span>'>✓ Listo. Tu producto en línea.<span class="cursor"></span></div>
-          </div>
-        </div>
-        <div class="floating-card fc-1">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <div class="i18n" data-es='Ciberseguridad<br/><small style="color:var(--muted)">Auditorías reales</small>' data-en='Cybersecurity<br/><small style="color:var(--muted)">Real audits</small>'>Ciberseguridad<br/><small style="color:var(--muted)">Auditorías reales</small></div>
-        </div>
-        <div class="floating-card fc-2">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></div>
-          <div class="i18n" data-es='Automatización<br/><small style="color:var(--muted)">Procesos sin fricción</small>' data-en='Automation<br/><small style="color:var(--muted)">Frictionless processes</small>'>Automatización<br/><small style="color:var(--muted)">Procesos sin fricción</small></div>
-        </div>
-      </div>
-    </div>
+  <div class="scroll-hint">
+    <div class="scroll-arrow"></div>
   </div>
 </section>
 
-<section class="about" id="nosotros">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <span class="eyebrow i18n" data-es="Quiénes somos" data-en="Who we are">Quiénes somos</span>
-        <h2 class="i18n" data-es='Tecnología <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">aplicada</span> a tus objetivos.' data-en='Technology <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">applied</span> to your goals.'>Tecnología <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">aplicada</span> a tus objetivos.</h2>
-        <p class="i18n" data-es="En DIRO TECH diseñamos y desarrollamos productos digitales para empresas y emprendedores. Trabajamos sobre cuatro pilares: desarrollo web y de apps, ciberseguridad, automatización de procesos y soporte técnico continuo." data-en="At DIRO TECH we design and develop digital products for companies and entrepreneurs. We work on four pillars: web and app development, cybersecurity, process automation, and continuous tech support.">
-          En DIRO TECH diseñamos y desarrollamos productos digitales para empresas y emprendedores.
-          Trabajamos sobre cuatro pilares: desarrollo web y de apps, ciberseguridad, automatización
-          de procesos y soporte técnico continuo.
-        </p>
-        <p class="i18n" data-es="Nos importa que cada entrega tenga sentido para tu negocio: validación con usuarios, arquitectura sólida y un acompañamiento que no termina cuando se sube a producción." data-en="We care that every delivery makes sense for your business: user validation, solid architecture, and support that doesn't end when it goes into production.">
-          Nos importa que cada entrega tenga sentido para tu negocio: validación con usuarios,
-          arquitectura sólida y un acompañamiento que no termina cuando se sube a producción.
-        </p>
-
-        <div class="pillars">
-          <div class="pillar reveal delay-1">
-            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
-            <h4 class="i18n" data-es="Desarrollo" data-en="Development">Desarrollo</h4>
-            <p class="i18n" data-es="Web y apps nativas y multiplataforma." data-en="Web, native and cross-platform apps.">Web y apps nativas y multiplataforma.</p>
-          </div>
-          <div class="pillar reveal delay-2">
-            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <h4 class="i18n" data-es="Ciberseguridad" data-en="Cybersecurity">Ciberseguridad</h4>
-            <p class="i18n" data-es="Auditorías, hardening y buenas prácticas." data-en="Audits, hardening, and best practices.">Auditorías, hardening y buenas prácticas.</p>
-          </div>
-          <div class="pillar reveal delay-3">
-            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33"/></svg></div>
-            <h4 class="i18n" data-es="Automatización" data-en="Automation">Automatización</h4>
-            <p class="i18n" data-es="Integraciones que ahorran horas reales." data-en="Integrations that save real hours.">Integraciones que ahorran horas reales.</p>
-          </div>
-          <div class="pillar reveal delay-4">
-            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-            <h4 class="i18n" data-es="Soporte" data-en="Support">Soporte</h4>
-            <p class="i18n" data-es="Mantenimiento y respuesta cuando hace falta." data-en="Maintenance and response when needed.">Mantenimiento y respuesta cuando hace falta.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="about-visual reveal-scale">
-        <img src="assets/logo.png" alt="DIRO TECH logo" />
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- ═══ SERVICES ═══ -->
 <section class="services" id="servicios">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow i18n" data-es="Servicios" data-en="Services">Servicios</span>
-      <h2 class="i18n" data-es='Soluciones <span class="grad">a medida</span> para cada etapa de tu producto.' data-en='Custom <span class="grad">solutions</span> for every stage of your product.'>Soluciones <span class="grad">a medida</span> para cada etapa de tu producto.</h2>
-      <p class="i18n" data-es="Trabajamos con tarifas claras y presupuestos cerrados desde el primer contacto." data-en="We work with clear rates and closed budgets from the first contact.">Trabajamos con tarifas claras y presupuestos cerrados desde el primer contacto.</p>
-    </div>
+  <div class="wrap">
+    <p class="sec-label rv" data-k="svc_label">Servicios</p>
+    <h2 class="sec-title rv">
+      <span data-k="svc_title1">Todo lo que necesitas</span><br>
+      <span class="grad" data-k="svc_title2">para crecer digitalmente</span>
+    </h2>
+    <p class="sec-sub rv" data-k="svc_sub">Soluciones completas de tecnología y estrategia para transformar y escalar tu negocio.</p>
+    <div class="svc-grid">
 
-    <div class="services-grid">
-      <article class="service reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
-        <h3 class="i18n" data-es="Desarrollo de Apps Nativas (iOS / Android)" data-en="Native App Development (iOS / Android)">Desarrollo de Apps Nativas (iOS / Android)</h3>
-        <p class="i18n" data-es="Aplicaciones de alto rendimiento con acceso total al hardware y fluidez nativa." data-en="High-performance applications with full hardware access and native fluidity.">Aplicaciones de alto rendimiento con acceso total al hardware y fluidez nativa.</p>
-        <div class="price">
-          <span class="from i18n" data-es="Desde" data-en="From">Desde</span>
-          <span class="num dynamic-price" data-id="nativas">...</span>
-        </div>
-      </article>
-
-      <article class="service reveal delay-1">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg></div>
-        <h3 class="i18n" data-es="Desarrollo de Apps Multiplataforma (Flutter)" data-en="Cross-Platform Apps (Flutter)">Desarrollo de Apps Multiplataforma (Flutter)</h3>
-        <p class="i18n" data-es="Un solo código para iOS y Android, con reducción de costes y tiempo de lanzamiento." data-en="A single codebase for iOS and Android, reducing costs and time to market.">Un solo código para iOS y Android, con reducción de costes y tiempo de lanzamiento.</p>
-        <div class="price">
-          <span class="from i18n" data-es="Desde" data-en="From">Desde</span>
-          <span class="num dynamic-price" data-id="multi">...</span>
-        </div>
-      </article>
-
-      <article class="service reveal delay-2">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
-        <h3 class="i18n" data-es="Diseño UX/UI" data-en="UX/UI Design">Diseño UX/UI</h3>
-        <p class="i18n" data-es="Interfaces intuitivas y atractivas, con validación de usuarios y prototipado." data-en="Intuitive and attractive interfaces, with user validation and prototyping.">Interfaces intuitivas y atractivas, con validación de usuarios y prototipado.</p>
-        <div class="price">
-          <span class="from i18n" data-es="Desde" data-en="From">Desde</span>
-          <span class="num dynamic-price" data-id="uxui">...</span>
-        </div>
-      </article>
-
-      <article class="service reveal delay-3">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M9 9h6M9 13h4"/></svg></div>
-        <h3 class="i18n" data-es="Consultoría Técnica" data-en="Technical Consulting">Consultoría Técnica</h3>
-        <p class="i18n" data-es="Asesoramiento experto en viabilidad, arquitectura y planificación de tu app." data-en="Expert advice on feasibility, architecture, and planning for your app.">Asesoramiento experto en viabilidad, arquitectura y planificación de tu app.</p>
-        <div class="price">
-          <span class="num dynamic-price" data-id="consultoria">...</span>
-          <span class="unit i18n" data-es="/ hora" data-en="/ hour">/ hora</span>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="process" id="proceso">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow i18n" data-es="Cómo trabajamos" data-en="How we work">Cómo trabajamos</span>
-      <h2 class="i18n" data-es='Un proceso <span class="grad">claro</span>, sin sorpresas.' data-en='A <span class="grad">clear</span> process, no surprises.'>Un proceso <span class="grad">claro</span>, sin sorpresas.</h2>
-      <p class="i18n" data-es="De la primera llamada al despliegue final, sabes en qué punto está tu proyecto." data-en="From the first call to the final deployment, you know where your project stands.">De la primera llamada al despliegue final, sabes en qué punto está tu proyecto.</p>
-    </div>
-
-    <div class="steps">
-      <div class="step reveal"><div class="num">01</div><h4 class="i18n" data-es="Descubrimiento" data-en="Discovery">Descubrimiento</h4><p class="i18n" data-es="Entendemos tu negocio, usuarios y objetivos." data-en="We understand your business, users, and goals.">Entendemos tu negocio, usuarios y objetivos.</p></div>
-      <div class="step reveal delay-1"><div class="num">02</div><h4 class="i18n" data-es="Diseño" data-en="Design">Diseño</h4><p class="i18n" data-es="UX/UI con prototipos validables antes de programar." data-en="UX/UI with validatable prototypes before coding.">UX/UI con prototipos validables antes de programar.</p></div>
-      <div class="step reveal delay-2"><div class="num">03</div><h4 class="i18n" data-es="Desarrollo" data-en="Development">Desarrollo</h4><p class="i18n" data-es="Sprints con entregas continuas y código auditado." data-en="Sprints with continuous deliveries and audited code.">Sprints con entregas continuas y código auditado.</p></div>
-      <div class="step reveal delay-3"><div class="num">04</div><h4 class="i18n" data-es="Lanzamiento" data-en="Launch">Lanzamiento</h4><p class="i18n" data-es="Despliegue, monitorización y soporte post-launch." data-en="Deployment, monitoring, and post-launch support.">Despliegue, monitorización y soporte post-launch.</p></div>
-    </div>
-  </div>
-</section>
-
-<section style="padding:40px 0 80px">
-  <div class="container">
-    <div class="cta-banner reveal-scale">
-      <h2 class="i18n" data-es="¿Tienes una idea? Vamos a construirla." data-en="Have an idea? Let's build it.">¿Tienes una idea? Vamos a construirla.</h2>
-      <p class="i18n" data-es="Cuéntanos en qué estás trabajando y te respondemos con una propuesta clara en menos de 24 horas." data-en="Tell us what you are working on and we will reply with a clear proposal in less than 24 hours.">Cuéntanos en qué estás trabajando y te respondemos con una propuesta clara en menos de 24 horas.</p>
-      <a href="#contacto" class="btn i18n" data-es='Hablar con DIRO TECH <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>' data-en='Talk to DIRO TECH <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>'>
-        Hablar con DIRO TECH
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section id="contacto">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow i18n" data-es="Contacto" data-en="Contact">Contacto</span>
-      <h2 class="i18n" data-es='Empieza tu <span class="grad">proyecto</span> hoy.' data-en='Start your <span class="grad">project</span> today.'>Empieza tu <span class="grad">proyecto</span> hoy.</h2>
-      <p class="i18n" data-es="Atendemos online y desde Ciudad de México, de lunes a sábado." data-en="We serve online and from Mexico City, Monday through Saturday.">Atendemos online y desde Ciudad de México, de lunes a sábado.</p>
-    </div>
-
-    <div class="contact-grid">
-      <div class="contact-info reveal">
-        <h3 class="i18n" data-es="Información" data-en="Information">Información</h3>
-        <div class="info-item">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19.86 19.86 0 0 1 2 3.11 1 1 0 0 1 3 2h4.09a1 1 0 0 1 1 .75l1.13 4.52a1 1 0 0 1-.27.95L8 9.91a16 16 0 0 0 6 6l1.69-1.69a1 1 0 0 1 .95-.27l4.52 1.13a1 1 0 0 1 .84 1z"/></svg></div>
-          <div>
-            <span class="lbl i18n" data-es="Teléfono" data-en="Phone">Teléfono</span>
-            <a href="tel:+525631896344">+52 56 3189 6344</a>
-          </div>
-        </div>
-        <div class="info-item">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
-          <div>
-            <span class="lbl i18n" data-es="Email" data-en="Email">Email</span>
-            <a href="mailto:dirotech.apps@gmail.com">dirotech.apps@gmail.com</a>
-          </div>
-        </div>
-        <div class="info-item">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div>
-            <span class="lbl i18n" data-es="Ubicación" data-en="Location">Ubicación</span>
-            <span class="val i18n" data-es="Ciudad de México · Atendemos online" data-en="Mexico City · Online services">Ciudad de México · Atendemos online</span>
-          </div>
-        </div>
-        <div class="info-item">
-          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-          <div>
-            <span class="lbl i18n" data-es="Horario" data-en="Hours">Horario</span>
-            <span class="val i18n" data-es="Lun – Sáb · 07:00 – 20:00 (GMT-6)" data-en="Mon – Sat · 07:00 – 20:00 (GMT-6)">Lun – Sáb · 07:00 – 20:00 (GMT-6)</span>
-          </div>
-        </div>
+      <div class="svc-card rv d1">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2.5"/></svg></div>
+        <h3 data-k="s1n">Desarrollo de Apps</h3>
+        <p data-k="s1d">Creamos aplicaciones móviles y web robustas, escalables y centradas en el usuario. iOS, Android y soluciones multiplataforma.</p>
+        <div class="tags"><span class="tag">iOS</span><span class="tag">Android</span><span class="tag">React Native</span><span class="tag">Flutter</span></div>
       </div>
 
-      <form class="contact-form reveal delay-1" onsubmit="event.preventDefault();this.querySelector('button').textContent='Mensaje preparado — envíalo desde tu correo';">
-        <div class="form-row">
-          <div class="field">
-            <label for="nombre" class="i18n" data-es="Nombre" data-en="Name">Nombre</label>
-            <input id="nombre" type="text" placeholder="Tu nombre" required />
-          </div>
-          <div class="field">
-            <label for="email" class="i18n" data-es="Email" data-en="Email">Email</label>
-            <input id="email" type="email" placeholder="tu@email.com" required />
-          </div>
+      <div class="svc-card rv d2">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3 data-k="s2n">Diseño Web</h3>
+        <p data-k="s2d">Webs profesionales que convierten visitantes en clientes. Diseño premium, UX impecable y rendimiento optimizado.</p>
+        <div class="tags"><span class="tag">UI/UX</span><span class="tag">Responsive</span><span class="tag">Landing Pages</span><span class="tag">E-commerce</span></div>
+      </div>
+
+      <div class="svc-card rv d3">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><polyline points="8 11 10 13 14 9"/></svg></div>
+        <h3 data-k="s3n">Auditoría SEO</h3>
+        <p data-k="s3d">Analizamos tu presencia digital y entregamos el roadmap completo para dominar los buscadores y multiplicar tu tráfico orgánico.</p>
+        <div class="tags"><span class="tag">On-Page</span><span class="tag">Técnico</span><span class="tag">Local SEO</span><span class="tag">Core Web Vitals</span></div>
+      </div>
+
+      <div class="svc-card rv d4">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>
+        <h3 data-k="s4n">Auditoría de Negocios</h3>
+        <p data-k="s4d">Identificamos cuellos de botella, oportunidades de crecimiento y diseñamos la hoja de ruta estratégica para escalar tu empresa.</p>
+        <div class="tags"><span class="tag">Diagnóstico</span><span class="tag">KPIs</span><span class="tag">Estrategia</span><span class="tag">Crecimiento</span></div>
+      </div>
+
+      <div class="svc-card rv d5">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
+        <h3 data-k="s5n">Automatización</h3>
+        <p data-k="s5d">Automatizamos procesos repetitivos con IA y herramientas no-code para que tu equipo se enfoque en lo que realmente importa.</p>
+        <div class="tags"><span class="tag">IA</span><span class="tag">No-Code</span><span class="tag">Workflows</span><span class="tag">Integraciones</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section class="stats" id="nosotros">
+  <div class="wrap">
+    <p class="sec-label rv" data-k="st_label">Resultados</p>
+    <h2 class="sec-title rv">
+      <span data-k="st_title1">Números que</span> <span class="grad" data-k="st_title2">hablan por sí solos</span>
+    </h2>
+    <div class="stats-grid">
+      <div class="stat-item rv d1">
+        <div class="stat-n" data-target="50">0</div>
+        <div class="stat-l" data-k="st1">Proyectos Entregados</div>
+      </div>
+      <div class="stat-item rv d2">
+        <div class="stat-n" data-target="30">0</div>
+        <div class="stat-l" data-k="st2">Clientes Activos</div>
+      </div>
+      <div class="stat-item rv d3">
+        <div class="stat-n" data-target="5">0</div>
+        <div class="stat-l" data-k="st3">Años de Experiencia</div>
+      </div>
+      <div class="stat-item rv d4">
+        <div class="stat-n" data-target="98">0</div>
+        <div class="stat-l" data-k="st4">% Satisfacción</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="pricing" id="precios">
+  <div class="wrap">
+    <p class="sec-label rv" data-k="pr_label">Precios</p>
+    <h2 class="sec-title rv">
+      <span data-k="pr_title1">Planes diseñados para</span><br>
+      <span class="grad" data-k="pr_title2">tu crecimiento</span>
+    </h2>
+    <p class="sec-sub rv" data-k="pr_sub">Precios transparentes, sin sorpresas. Elige el plan que mejor se adapte a tu etapa.</p>
+    <div class="price-grid">
+
+      <div class="price-card rv d1">
+        <div class="price-name" data-k="p1n">Starter</div>
+        <div class="price-amt"><span class="price-sym">$</span><span class="price-val" data-usd="649">649</span></div>
+        <p class="price-desc" data-k="p1d">Ideal para negocios que quieren establecer su presencia digital profesional.</p>
+        <ul class="price-feats">
+          <li data-k="p1f1">Diseño web profesional (5 páginas)</li>
+          <li data-k="p1f2">Responsive y optimizado</li>
+          <li data-k="p1f3">SEO básico incluido</li>
+          <li data-k="p1f4">Formulario de contacto</li>
+          <li data-k="p1f5">1 mes de soporte</li>
+        </ul>
+        <a href="#contacto" class="btn-s" style="display:block;text-align:center" data-k="p_cta">Empezar</a>
+      </div>
+
+      <div class="price-card hot rv d2" data-badge="Más Popular">
+        <div class="price-name" data-k="p2n">Growth</div>
+        <div class="price-amt"><span class="price-sym">$</span><span class="price-val" data-usd="1699">1,699</span></div>
+        <p class="price-desc" data-k="p2d">Para empresas que quieren acelerar su crecimiento digital con una estrategia completa.</p>
+        <ul class="price-feats">
+          <li data-k="p2f1">Todo en Starter</li>
+          <li data-k="p2f2">Auditoría SEO completa</li>
+          <li data-k="p2f3">Auditoría de negocio</li>
+          <li data-k="p2f4">App web básica</li>
+          <li data-k="p2f5">Automatización de 1 proceso</li>
+          <li data-k="p2f6">3 meses de soporte</li>
+        </ul>
+        <a href="#contacto" class="btn-p" style="display:block;text-align:center" data-k="p_cta">Empezar</a>
+      </div>
+
+      <div class="price-card rv d3">
+        <div class="price-name" data-k="p3n">Enterprise</div>
+        <div class="price-amt"><span class="price-sym">$</span><span class="price-val" data-usd="3999">3,999</span><span class="price-suf">+</span></div>
+        <p class="price-desc" data-k="p3d">Solución digital completa para empresas que quieren dominar su mercado.</p>
+        <ul class="price-feats">
+          <li data-k="p3f1">Todo en Growth</li>
+          <li data-k="p3f2">App móvil iOS + Android</li>
+          <li data-k="p3f3">Automatización avanzada con IA</li>
+          <li data-k="p3f4">Dashboard de analytics</li>
+          <li data-k="p3f5">Estrategia digital 12 meses</li>
+          <li data-k="p3f6">Soporte prioritario dedicado</li>
+        </ul>
+        <a href="#contacto" class="btn-s" style="display:block;text-align:center" data-k="p_cta3">Contactar</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROCESS ═══ -->
+<section class="process" id="proceso">
+  <div class="wrap">
+    <p class="sec-label rv" data-k="pc_label">Proceso</p>
+    <h2 class="sec-title rv">
+      <span data-k="pc_title1">Cómo</span> <span class="grad" data-k="pc_title2">trabajamos juntos</span>
+    </h2>
+    <div class="proc-steps">
+      <div class="proc-step rv d1"><div class="step-n">1</div><h4 data-k="ps1t">Descubrimiento</h4><p data-k="ps1d">Entendemos tu negocio, objetivos y necesidades específicas.</p></div>
+      <div class="proc-step rv d2"><div class="step-n">2</div><h4 data-k="ps2t">Estrategia</h4><p data-k="ps2d">Diseñamos el plan de acción más adecuado para tus metas.</p></div>
+      <div class="proc-step rv d3"><div class="step-n">3</div><h4 data-k="ps3t">Desarrollo</h4><p data-k="ps3d">Construimos con las mejores tecnologías y estándares del mercado.</p></div>
+      <div class="proc-step rv d4"><div class="step-n">4</div><h4 data-k="ps4t">Lanzamiento</h4><p data-k="ps4d">Desplegamos, probamos y optimizamos para un lanzamiento exitoso.</p></div>
+      <div class="proc-step rv d5"><div class="step-n">5</div><h4 data-k="ps5t">Crecimiento</h4><p data-k="ps5d">Medimos resultados y escalamos lo que funciona para tu negocio.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <p class="sec-label rv" data-k="ct_label">Contacto</p>
+    <h2 class="sec-title rv">
+      <span data-k="ct_title1">Hablemos de</span><br>
+      <span class="grad" data-k="ct_title2">tu proyecto</span>
+    </h2>
+    <div class="contact-grid">
+      <div class="cinfo rl">
+        <h3 data-k="ct_h">¿Listo para transformar tu negocio?</h3>
+        <p data-k="ct_p">Cuéntanos tu proyecto y en menos de 24 horas tendrás una propuesta personalizada sin compromiso.</p>
+        <div class="cdet"><div class="cico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><strong data-k="ct_el">Email</strong><a href="mailto:dirotech.apps@gmail.com" style="color:var(--text);text-decoration:none">dirotech.apps@gmail.com</a></div></div>
+        <div class="cdet"><div class="cico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><strong data-k="ct_wl">WhatsApp</strong><a href="https://wa.me/525631896344" target="_blank" style="color:var(--text);text-decoration:none">+52 56 3189 6344</a></div></div>
+        <div class="cdet"><div class="cico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><strong data-k="ct_ll">Ubicación</strong><span data-k="ct_lv">Ciudad de México · Online</span></div></div>
+        <div class="cdet"><div class="cico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><strong data-k="ct_rl">Respuesta</strong><span data-k="ct_rv">Menos de 24 horas</span></div></div>
+      </div>
+      <div class="cform rv">
+        <div class="frow">
+          <div class="fg"><label data-k="f_nm">Nombre</label><input type="text" placeholder="Tu nombre"></div>
+          <div class="fg"><label data-k="f_em">Email</label><input type="email" placeholder="tu@email.com"></div>
         </div>
-        <div class="field" style="margin-bottom:16px">
-          <label for="servicio" class="i18n" data-es="Servicio de interés" data-en="Service of interest">Servicio de interés</label>
-          <select id="servicio">
-            <option>Apps Nativas (iOS / Android)</option>
-            <option>Apps Multiplataforma (Flutter)</option>
-            <option>Diseño UX/UI</option>
-            <option>Consultoría Técnica</option>
-            <option>Otro</option>
+        <div class="fg">
+          <label data-k="f_sv">Servicio de interés</label>
+          <select>
+            <option data-k="f_s0">Selecciona un servicio</option>
+            <option data-k="s1n">Desarrollo de Apps</option>
+            <option data-k="s2n">Diseño Web</option>
+            <option data-k="s3n">Auditoría SEO</option>
+            <option data-k="s4n">Auditoría de Negocios</option>
+            <option data-k="s5n">Automatización</option>
           </select>
         </div>
-        <div class="field" style="margin-bottom:16px">
-          <label for="mensaje" class="i18n" data-es="Cuéntanos tu proyecto" data-en="Tell us about your project">Cuéntanos tu proyecto</label>
-          <textarea id="mensaje" placeholder="..." required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary i18n" data-es='Enviar solicitud <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>' data-en='Send request <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>'>
-          Enviar solicitud
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-        </button>
-      </form>
+        <div class="fg"><label data-k="f_ms">Mensaje</label><textarea placeholder="Cuéntanos sobre tu proyecto..."></textarea></div>
+        <button class="btn-p" style="width:100%;font-family:Inter,sans-serif;font-size:15px;border:none;cursor:pointer" data-k="f_sb">Enviar Mensaje</button>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ═══ FOOTER ═══ -->
 <footer>
-  <div class="container">
-    <div class="foot-grid">
-      <div class="foot-col">
-        <div class="foot-brand">
-          <img src="assets/logo.png" alt="DIRO TECH" />
-          <b>DIRO TECH</b>
-        </div>
-        <p class="i18n" data-es="Construimos el software que tu idea merece. Apps, web, ciberseguridad y automatización para hacer crecer tu negocio." data-en="We build the software your idea deserves. Apps, web, cybersecurity, and automation to grow your business.">Construimos el software que tu idea merece. Apps, web, ciberseguridad y automatización para hacer crecer tu negocio.</p>
-      </div>
-      <div class="foot-col">
-        <h5 class="i18n" data-es="Servicios" data-en="Services">Servicios</h5>
-        <ul>
-          <li><a href="#servicios" class="i18n" data-es="Apps Nativas" data-en="Native Apps">Apps Nativas</a></li>
-          <li><a href="#servicios" class="i18n" data-es="Apps Multiplataforma" data-en="Cross-Platform">Apps Multiplataforma</a></li>
-          <li><a href="#servicios" class="i18n" data-es="Diseño UX/UI" data-en="UX/UI Design">Diseño UX/UI</a></li>
-          <li><a href="#servicios" class="i18n" data-es="Consultoría" data-en="Consulting">Consultoría</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h5 class="i18n" data-es="Contacto" data-en="Contact">Contacto</h5>
-        <ul>
-          <li><a href="tel:+525631896344">+52 56 3189 6344</a></li>
-          <li><a href="mailto:dirotech.apps@gmail.com">dirotech.apps@gmail.com</a></li>
-          <li><a href="#" class="i18n" data-es="Ciudad de México · Online" data-en="Mexico City · Online">Ciudad de México · Online</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span class="i18n" data-es='© <span id="year"></span> DIRO TECH · Todos los derechos reservados.' data-en='© <span id="year"></span> DIRO TECH · All rights reserved.'>© <span id="year"></span> DIRO TECH · Todos los derechos reservados.</span>
-      <span class="mono" style="color:var(--accent)" class="i18n" data-es="› construyendo el futuro" data-en="› building the future">› construyendo el futuro</span>
-    </div>
+  <div class="foot-inner">
+    <div class="foot-logo-wrap"><img src="assets/logo.png" alt="DIRO TECH" class="foot-logo"></div>
+    <p class="foot-copy">© 2026 DIRO TECH — <span data-k="ft_r">Todos los derechos reservados.</span></p>
+    <nav class="foot-links">
+      <a href="#servicios" data-k="nav_s">Servicios</a>
+      <a href="#precios" data-k="nav_p">Precios</a>
+      <a href="#contacto" data-k="nav_c">Contacto</a>
+    </nav>
   </div>
 </footer>
 
+<!-- WhatsApp Float -->
+<a class="wa-float" href="https://wa.me/525631896344" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 <script>
-  // Año dinámico
-  document.getElementById('year').textContent = new Date().getFullYear();
+// ── TRANSLATIONS ──
+const T = {
+es:{
+  nav_s:'Servicios',nav_p:'Precios',nav_a:'Nosotros',nav_c:'Contacto',
+  hero_badge:'Disponible para trabajar',
+  hero_h1:'Construimos el software',hero_h1g:'que tu idea merece.',hero_sub:'Desarrollo de apps, diseño web, auditorías y automatización para empresas que quieren liderar su mercado.',
+  hero_cta1:'Solicitar Propuesta',hero_cta2:'Ver Servicios',
+  svc_label:'Servicios',svc_title1:'Todo lo que necesitas',svc_title2:'para crecer digitalmente',
+  svc_sub:'Soluciones completas de tecnología y estrategia para transformar y escalar tu negocio.',
+  s1n:'Desarrollo de Apps',s1d:'Creamos aplicaciones móviles y web robustas, escalables y centradas en el usuario. iOS, Android y soluciones multiplataforma.',
+  s2n:'Diseño Web',s2d:'Webs profesionales que convierten visitantes en clientes. Diseño premium, UX impecable y rendimiento optimizado.',
+  s3n:'Auditoría SEO',s3d:'Analizamos tu presencia digital y entregamos el roadmap completo para dominar los buscadores y multiplicar tu tráfico orgánico.',
+  s4n:'Auditoría de Negocios',s4d:'Identificamos cuellos de botella, oportunidades de crecimiento y diseñamos la hoja de ruta estratégica para escalar tu empresa.',
+  s5n:'Automatización',s5d:'Automatizamos procesos repetitivos con IA y herramientas no-code para que tu equipo se enfoque en lo que realmente importa.',
+  st_label:'Resultados',st_title1:'Números que',st_title2:'hablan por sí solos',
+  st1:'Proyectos Entregados',st2:'Clientes Activos',st3:'Años de Experiencia',st4:'% Satisfacción',
+  pr_label:'Precios',pr_title1:'Planes diseñados para',pr_title2:'tu crecimiento',
+  pr_sub:'Precios transparentes, sin sorpresas. Elige el plan que mejor se adapte a tu etapa.',
+  p1n:'Starter',p1d:'Ideal para negocios que quieren establecer su presencia digital profesional.',
+  p1f1:'Diseño web profesional (5 páginas)',p1f2:'Responsive y optimizado',p1f3:'SEO básico incluido',p1f4:'Formulario de contacto',p1f5:'1 mes de soporte',
+  p2n:'Growth',p2d:'Para empresas que quieren acelerar su crecimiento digital con una estrategia completa.',
+  p2f1:'Todo en Starter',p2f2:'Auditoría SEO completa',p2f3:'Auditoría de negocio',p2f4:'App web básica',p2f5:'Automatización de 1 proceso',p2f6:'3 meses de soporte',
+  p3n:'Enterprise',p3d:'Solución digital completa para empresas que quieren dominar su mercado.',
+  p3f1:'Todo en Growth',p3f2:'App móvil iOS + Android',p3f3:'Automatización avanzada con IA',p3f4:'Dashboard de analytics',p3f5:'Estrategia digital 12 meses',p3f6:'Soporte prioritario dedicado',
+  p_cta:'Empezar',p_cta3:'Contactar',
+  pc_label:'Proceso',pc_title1:'Cómo',pc_title2:'trabajamos juntos',
+  ps1t:'Descubrimiento',ps1d:'Entendemos tu negocio, objetivos y necesidades específicas.',
+  ps2t:'Estrategia',ps2d:'Diseñamos el plan de acción más adecuado para tus metas.',
+  ps3t:'Desarrollo',ps3d:'Construimos con las mejores tecnologías y estándares del mercado.',
+  ps4t:'Lanzamiento',ps4d:'Desplegamos, probamos y optimizamos para un lanzamiento exitoso.',
+  ps5t:'Crecimiento',ps5d:'Medimos resultados y escalamos lo que funciona para tu negocio.',
+  ct_label:'Contacto',ct_title1:'Hablemos de',ct_title2:'tu proyecto',
+  ct_h:'¿Listo para transformar tu negocio?',
+  ct_p:'Cuéntanos tu proyecto y en menos de 24 horas tendrás una propuesta personalizada sin compromiso.',
+  ct_el:'Email',ct_wl:'WhatsApp',ct_ll:'Ubicación',ct_lv:'Ciudad de México · Online',ct_rl:'Respuesta',ct_rv:'Menos de 24 horas',
+  f_nm:'Nombre',f_em:'Email',f_sv:'Servicio de interés',f_s0:'Selecciona un servicio',f_ms:'Mensaje',f_sb:'Enviar Mensaje',
+  ft_r:'Todos los derechos reservados.',badge:'Más Popular'
+},
+en:{
+  nav_s:'Services',nav_p:'Pricing',nav_a:'About',nav_c:'Contact',
+  hero_badge:'Available for Work',
+  hero_h1:'We Build the Software',hero_h1g:'Your Idea Deserves.',hero_sub:'App development, web design, audits and automation for companies that want to lead their market.',
+  hero_cta1:'Request a Proposal',hero_cta2:'View Services',
+  svc_label:'Services',svc_title1:'Everything you need',svc_title2:'to grow digitally',
+  svc_sub:'Complete technology and strategy solutions to transform and scale your business.',
+  s1n:'App Development',s1d:'We build robust, scalable mobile and web applications centered on the user. iOS, Android and cross-platform solutions.',
+  s2n:'Web Design',s2d:'Professional websites that convert visitors into clients. Premium design, flawless UX and optimized performance.',
+  s3n:'SEO Audit',s3d:'We analyze your digital presence and deliver a complete roadmap to dominate search engines and multiply your organic traffic.',
+  s4n:'Business Audit',s4d:'We identify bottlenecks, growth opportunities and design a strategic roadmap to scale your company.',
+  s5n:'Automation',s5d:'We automate repetitive processes with AI and no-code tools so your team can focus on what truly matters.',
+  st_label:'Results',st_title1:'Numbers that',st_title2:'speak for themselves',
+  st1:'Projects Delivered',st2:'Active Clients',st3:'Years of Experience',st4:'% Satisfaction',
+  pr_label:'Pricing',pr_title1:'Plans designed for',pr_title2:'your growth',
+  pr_sub:'Transparent pricing, no surprises. Choose the plan that best fits your current stage.',
+  p1n:'Starter',p1d:'Ideal for businesses that want to establish their professional digital presence.',
+  p1f1:'Professional web design (5 pages)',p1f2:'Responsive and optimized',p1f3:'Basic SEO included',p1f4:'Contact form',p1f5:'1 month support',
+  p2n:'Growth',p2d:'For companies that want to accelerate their digital growth with a complete strategy.',
+  p2f1:'Everything in Starter',p2f2:'Full SEO audit',p2f3:'Business audit',p2f4:'Basic web app',p2f5:'1 process automation',p2f6:'3 months support',
+  p3n:'Enterprise',p3d:'Complete digital solution for companies that want to dominate their market.',
+  p3f1:'Everything in Growth',p3f2:'Mobile app iOS + Android',p3f3:'Advanced AI automation',p3f4:'Analytics dashboard',p3f5:'12-month digital strategy',p3f6:'Dedicated priority support',
+  p_cta:'Get Started',p_cta3:'Contact Us',
+  pc_label:'Process',pc_title1:'How we',pc_title2:'work together',
+  ps1t:'Discovery',ps1d:'We understand your business, goals and specific needs.',
+  ps2t:'Strategy',ps2d:'We design the most suitable action plan for your goals.',
+  ps3t:'Development',ps3d:'We build with the best technologies and market standards.',
+  ps4t:'Launch',ps4d:'We deploy, test and optimize for a successful launch.',
+  ps5t:'Growth',ps5d:'We measure results and scale what works for your business.',
+  ct_label:'Contact',ct_title1:"Let's talk about",ct_title2:'your project',
+  ct_h:'Ready to transform your business?',
+  ct_p:"Tell us about your project and in less than 24 hours you'll have a personalized proposal with no commitment.",
+  ct_el:'Email',ct_wl:'WhatsApp',ct_ll:'Location',ct_lv:'Mexico City · Online',ct_rl:'Response',ct_rv:'Less than 24 hours',
+  f_nm:'Name',f_em:'Email',f_sv:'Service of interest',f_s0:'Select a service',f_ms:'Message',f_sb:'Send Message',
+  ft_r:'All rights reserved.',badge:'Most Popular'
+}};
 
-  // ====== IDIOMA (Inglés / Español) ======
-  const langToggle = document.getElementById('langToggle');
-  const htmlTag = document.getElementById('htmlTag');
-  let currentLang = localStorage.getItem('lang') || 'es';
+// ── CURRENCY ──
+const RATES={USD:1,EUR:0.92,MXN:17.5,COP:4000,ARS:950,CLP:950,BRL:5.05,GBP:0.79};
+const SYMS={USD:'$',EUR:'€',MXN:'$',COP:'$',ARS:'$',CLP:'$',BRL:'R$',GBP:'£'};
+const C2CUR={US:'USD',GB:'GBP',DE:'EUR',FR:'EUR',ES:'EUR',IT:'EUR',PT:'EUR',NL:'EUR',BE:'EUR',AT:'EUR',MX:'MXN',CO:'COP',AR:'ARS',CL:'CLP',BR:'BRL',PE:'USD',EC:'USD',VE:'USD',UY:'USD',PY:'USD',BO:'USD'};
+let cur='USD',lang='es';
 
-  function applyLanguage(lang) {
-    document.querySelectorAll('.i18n').forEach(el => {
-      if(el.dataset[lang]) el.innerHTML = el.dataset[lang];
-    });
-    langToggle.textContent = lang === 'es' ? 'EN' : 'ES';
-    htmlTag.lang = lang;
-    localStorage.setItem('lang', lang);
-    currentLang = lang;
-  }
-  
-  applyLanguage(currentLang);
+function fmt(usd,c){
+  const v=Math.round(usd*RATES[c]);
+  return v>=1000?v.toLocaleString('en-US'):String(v);
+}
+function setCur(c){
+  cur=c;
+  document.querySelectorAll('.price-val').forEach(el=>el.textContent=fmt(+el.dataset.usd,c));
+  document.querySelectorAll('.price-sym').forEach(el=>el.textContent=SYMS[c]);
+}
+async function detectCur(){
+  try{
+    const r=await fetch('https://ipapi.co/json/');
+    const d=await r.json();
+    const c=C2CUR[d.country_code]||'USD';
+    cur=c;document.getElementById('curSel').value=c;setCur(c);
+  }catch(e){}
+}
 
-  langToggle.addEventListener('click', () => {
-    applyLanguage(currentLang === 'es' ? 'en' : 'es');
+// ── LANGUAGE ──
+function applyLang(l){
+  const t=T[l];
+  document.querySelectorAll('[data-k]').forEach(el=>{
+    const k=el.dataset.k;
+    if(!t[k])return;
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')el.placeholder=t[k];
+    else if(el.tagName==='OPTION')el.textContent=t[k];
+    else if(el.children.length===0)el.textContent=t[k];
+    else el.textContent=t[k];
   });
+  document.documentElement.lang=l;
+  document.getElementById('langBtn').textContent=l==='es'?'EN':'ES';
+  document.querySelector('.price-card.hot').dataset.badge=t.badge;
+}
+function toggleLang(){lang=lang==='es'?'en':'es';applyLang(lang);}
 
-  // ====== PRECIOS DINÁMICOS POR PAÍS ======
-  const pricingMatrix = {
-    nativas: { usd: "$3,999 USD", mxn: "$79,900 MXN", eur: "3.999 €" },
-    multi: { usd: "$2,499 USD", mxn: "$49,900 MXN", eur: "2.499 €" },
-    uxui: { usd: "$1,299 USD", mxn: "$25,900 MXN", eur: "1.299 €" },
-    consultoria: { usd: "$99 USD", mxn: "$1,900 MXN", eur: "99 €" }
-  };
+// ── THEME ──
+const SVG_SUN=`<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
+const SVG_MOON=`<svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+function toggleTheme(){
+  const dark=document.documentElement.dataset.theme==='dark';
+  document.documentElement.dataset.theme=dark?'light':'dark';
+  document.getElementById('themeBtn').innerHTML=dark?SVG_MOON:SVG_SUN;
+}
 
-  function updatePrices(currency) {
-    document.querySelectorAll('.dynamic-price').forEach(el => {
-      const id = el.dataset.id;
-      if (pricingMatrix[id] && pricingMatrix[id][currency]) {
-        el.textContent = pricingMatrix[id][currency];
-      }
-    });
-  }
+// ── SCROLL REVEAL ──
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});
+},{threshold:0.13});
+document.querySelectorAll('.rv,.rl,.rs').forEach(el=>io.observe(el));
 
-  function detectCurrency() {
-    try {
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-      if (tz.includes('Mexico')) return 'mxn';
-      if (tz.includes('Europe') || tz.includes('Madrid') || tz.includes('Paris') || tz.includes('Berlin')) return 'eur';
-      return 'usd';
-    } catch (error) {
-      return 'usd'; 
-    }
-  }
+// ── COUNTERS ──
+const cio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,tgt=+el.dataset.target;
+    let s=null;
+    const step=ts=>{
+      if(!s)s=ts;
+      const p=Math.min((ts-s)/1800,1);
+      const ease=1-Math.pow(1-p,3);
+      el.textContent=Math.round(ease*tgt);
+      if(p<1)requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+    cio.unobserve(el);
+  });
+},{threshold:0.5});
+document.querySelectorAll('[data-target]').forEach(el=>cio.observe(el));
 
-  updatePrices(detectCurrency());
+// ── PARALLAX ──
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  const bg=document.getElementById('heroBg');
+  if(bg)bg.style.transform=`translateY(${y*.38}px)`;
+  document.querySelectorAll('.orb').forEach((o,i)=>{
+    o.style.transform=`translateY(${y*(.08+i*.04)}px)`;
+  });
+},{passive:true});
 
-  // Nav scrolled
-  const nav = document.getElementById('nav');
-  const onScroll = () => {
-    if (window.scrollY > 30) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  };
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
-
-  // Burger
-  const burger = document.getElementById('burger');
-  const navLinks = document.getElementById('navLinks');
-  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-  // Reveal on scroll
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('.reveal, .reveal-scale').forEach(el => io.observe(el));
+// ── INIT ──
+detectCur();
+applyLang('es');
 </script>
 </body>
 </html>
